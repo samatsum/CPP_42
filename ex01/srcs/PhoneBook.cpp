@@ -1,7 +1,4 @@
-#include "PhoneBook.hpp"
-
-#define c_pre "\001\033[1;34m\002"
-#define c_pos "\001\033[0;0m\002"
+#include "../include/PhoneBook.hpp"
 
 void	print_name(std::string str)
 {
@@ -46,9 +43,9 @@ void	PhoneBook::add_contact(std::string data[5])
 
 void	PhoneBook::display_contact(int i) const
 {
-	std::cout << c_pre << "+----------+----------+----------+----------+" << c_pos << std::endl;
-	std::cout << c_pre << "|  Contact information for specified index  |" << c_pos << std::endl;
-	std::cout << c_pre << "+----------+----------+----------+----------+" << c_pos << std::endl;
+	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
+	std::cout << COLOR_BLUE << "|  Contact information for specified index  |" << COLOR_RESET << std::endl;
+	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
 
 	std::cout << "First Name: " << this->contacts[i].get_firstname() << std::endl;
 	std::cout << "Last Name: " << this->contacts[i].get_lastname() << std::endl;
@@ -62,21 +59,21 @@ void	PhoneBook::display_phonebook() const
 	int i;
 
 	i = 0;
-	std::cout << c_pre << "+----------+----------+----------+----------+" << c_pos << std::endl;
-	std::cout << c_pre << "|     index|first name| last name|  nickname|" << c_pos << std::endl;
-	std::cout << c_pre << "+----------+----------+----------+----------+" << c_pos << std::endl;
+	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
+	std::cout << COLOR_BLUE << "|     index|first name| last name|  nickname|" << COLOR_RESET << std::endl;
+	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
 	while (i < this->size)
 	{
-		std::cout << c_pre << "|         " << c_pos;
+		std::cout << COLOR_BLUE << "|         " << COLOR_RESET;
 		std::cout << i;
-		std::cout << c_pre << "|" << c_pos;
+		std::cout << COLOR_BLUE << "|" << COLOR_RESET;
 		print_name(this->contacts[i].get_firstname());
-		std::cout << c_pre << "|" << c_pos;
+		std::cout << COLOR_BLUE << "|" << COLOR_RESET;
 		print_name(this->contacts[i].get_lastname());
-		std::cout << c_pre << "|" << c_pos;
+		std::cout << COLOR_BLUE << "|" << COLOR_RESET;
 		print_name(this->contacts[i].get_nickname());
-		std::cout << c_pre << "|" << c_pre << std::endl;
+		std::cout << COLOR_BLUE << "|" << COLOR_BLUE << std::endl;
 		i++;
 	}
-	std::cout << c_pre << "+----------+----------+----------+----------+" << c_pos << std::endl;
+	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
 }

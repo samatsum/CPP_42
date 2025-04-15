@@ -1,4 +1,4 @@
-#include "PhoneBook.hpp"
+#include "../include/PhoneBook.hpp"
 
 static int      is_valid_number(std::string number)
 {
@@ -28,11 +28,11 @@ int main()
 
 	while (42)
 	{
-		std::cout << "\001\033[1;34m\002PhoneBook> \001\033[0;0m\002";
+		std::cout << COLOR_BLUE << "Please Command (ADD, SEARCH, EXIT)> " << COLOR_RESET;
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			std::cout << "\001\033[1;34m\002\nEnter Contact Information\001\033[0;0m\002" << std::endl;
+			std::cout << COLOR_BLUE << "\nEnter Contact Information" << COLOR_RESET << std::endl;
 			std::cout << "First Name: ";
 			std::getline(std::cin, data[0]);
 			std::cout << "Last Name: ";
@@ -50,7 +50,7 @@ int main()
 			std::cout << "Darkest Secret: ";
 			std::getline(std::cin, data[4]);
 			phonebook.add_contact(data);
-			std::cout << "\001\033[0;32m\002Contact Added Successfully!\001\033[0;32m\002\n" << std::endl;
+			std::cout << COLOR_BLUE << "Contact Added Successfully!" << COLOR_RESET << std::endl;
 		}
 		else if (input == "SEARCH")
 		{
@@ -59,7 +59,7 @@ int main()
 			std::cin >> index;
 			if (std::cin.fail() || index < 0 || index >= phonebook.get_size())
 			{
-				std::cout << "Invalid Index!\n" << std::endl;
+				std::cout << COLOR_RED<< index << " is Invalid Index!\n" << COLOR_RESET;
 				std::cin.clear();
 				std::getline(std::cin, input);
 				continue;
@@ -72,6 +72,6 @@ int main()
 		else if (input == "EXIT")
 			break;
 		else
-			std::cout << "Invalid command\n" << std::endl;
+			std::cout << COLOR_RED << input << " is Invalid command\n" << COLOR_RESET;
 	}
 }
