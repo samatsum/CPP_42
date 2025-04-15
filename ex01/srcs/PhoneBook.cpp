@@ -56,16 +56,16 @@ void	PhoneBook::display_contact(int i) const
 
 void	PhoneBook::display_phonebook() const
 {
-	int i;
+	int index;
 
-	i = 0;
+	index = 0;
 	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
 	std::cout << COLOR_BLUE << "|     index|first name| last name|  nickname|" << COLOR_RESET << std::endl;
 	std::cout << COLOR_BLUE << "+----------+----------+----------+----------+" << COLOR_RESET << std::endl;
-	while (i < this->size)
+	while (index < this->size)
 	{
 		std::cout << COLOR_BLUE << "|         " << COLOR_RESET;
-		std::cout << i;
+		std::cout << index;
 		std::cout << COLOR_BLUE << "|" << COLOR_RESET;
 		print_name(this->contacts[i].get_firstname());
 		std::cout << COLOR_BLUE << "|" << COLOR_RESET;

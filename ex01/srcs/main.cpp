@@ -1,77 +1,112 @@
 #include "../include/PhoneBook.hpp"
+#include <cctype>
 
-static int      is_valid_number(std::string number)
+static bool is_valid_input(const std::string& input)
 {
-        int     i;
+    return !input.empty();
+}
 
-        i = 0;
-        while (number[i])
-        {
-                if (number[i] == ' ')
-                {
-                        i++;
-                        continue;
-                }
-                if (number[i] < '0' || number[i] > '9')
-                        return (0);
-                i++;
+static bool is_digit_string(const std::string& str)
+{
+	int i;
+    if (str.empty())
+        return false;
+	i = 0;
+	while (i < str.length())
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return false;
+		i++;
+    }
+    return true;
+}
+
+static void handle_add_command(PhoneBook &phonebook)
+{
+    std::string data[5];
+
+    std::cout << COLOR_BLUE << "\nEnter Contact Information" << COLOR_RESET << std::endl;
+	while (1)
+	{
+        std::cout << "First Name: ";
+        std::getline(std::cin, data[0]);
+        if (is_valid_input(data[0]))
+            break;
+        std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
+    }
+	while (1)
+	{
+        std::cout << "Last Name: ";
+        std::getline(std::cin, data[1]);
+        if (is_valid_input(data[1]))
+            break;
+        std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
+    }
+	while (1)
+	{
+        std::cout << "NickName: ";
+        std::getline(std::cin, data[2]);
+        if (is_valid_input(data[2]))
+            break;
+        std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
+    }
+	while (1)
+	{
+        std::cout << "Phone Number: ";
+        std::getline(std::cin, data[3]);
+        if (!is_valid_input(data[3])) {
+            std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
+            continue;
         }
-        return (1);
+        if (is_digit_string(data[3]))
+            break;
+        std::cout << COLOR_RED << "Please input a valid number (digits only)." << COLOR_RESET << std::endl;
+    }
+	while (1)
+	{
+        std::cout << "Darkest Secret: ";
+        std::getline(std::cin, data[4]);
+        if (is_valid_input(data[4]))
+            break;
+        std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
+    }
+}
+
+static void handle_search_command(PhoneBook &phonebook)
+{
+    int index;
+    std::string input;
+
+    phonebook.display_phonebook();
+    std::cout << "\nInsert Index: ";
+    std::cin >> index;
+    if (std::cin.fail() || index < 0 || index >= phonebook.get_size())
+    {
+        std::cout << COLOR_RED << "Invalid input! Please enter a number." << COLOR_RESET << std::endl;
+        std::cin.clear();
+        std::getline(std::cin, input);
+        return;
+    }
+    phonebook.display_contact(index);
+    std::cin.clear();
+    std::getline(std::cin, input);
 }
 
 int main()
 {
-	PhoneBook	phonebook;
-	std::string	data[5];
-	std::string	input;
-	int 		index;
+    PhoneBook phonebook;
+    std::string input;
 
-	while (42)
-	{
-		std::cout << COLOR_BLUE << "Please Command (ADD, SEARCH, EXIT)> " << COLOR_RESET;
-		std::getline(std::cin, input);
-		if (input == "ADD")
-		{
-			std::cout << COLOR_BLUE << "\nEnter Contact Information" << COLOR_RESET << std::endl;
-			std::cout << "First Name: ";
-			std::getline(std::cin, data[0]);
-			std::cout << "Last Name: ";
-			std::getline(std::cin, data[1]);
-			std::cout << "NickName: ";
-			std::getline(std::cin, data[2]);
-			do
-			{
-				std::cout << "Phone Number: ";
-				std::getline(std::cin, data[3]);
-				if (is_valid_number(data[3]))
-					break;
-				std::cout << "Please input a valid number" << std::endl;
-			} while (!is_valid_number(data[3]));
-			std::cout << "Darkest Secret: ";
-			std::getline(std::cin, data[4]);
-			phonebook.add_contact(data);
-			std::cout << COLOR_BLUE << "Contact Added Successfully!" << COLOR_RESET << std::endl;
-		}
-		else if (input == "SEARCH")
-		{
-			phonebook.display_phonebook();
-			std::cout << "\nInsert Index: ";
-			std::cin >> index;
-			if (std::cin.fail() || index < 0 || index >= phonebook.get_size())
-			{
-				std::cout << COLOR_RED<< index << " is Invalid Index!\n" << COLOR_RESET;
-				std::cin.clear();
-				std::getline(std::cin, input);
-				continue;
-			}
-			phonebook.display_contact(index);
-			std::cin.clear();
-			std::getline(std::cin, input);
-			continue;
-		}
-		else if (input == "EXIT")
-			break;
-		else
-			std::cout << COLOR_RED << input << " is Invalid command\n" << COLOR_RESET;
-	}
+    while (42)
+    {
+        std::cout << COLOR_BLUE << "Please Command (ADD, SEARCH, EXIT)> " << COLOR_RESET;
+        std::getline(std::cin, input);
+        if (input == "ADD")
+            handle_add_command(phonebook);
+        else if (input == "SEARCH")
+            handle_search_command(phonebook);
+        else if (input == "EXIT")
+            break;
+    }
+    return (0);
 }
