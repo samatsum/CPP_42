@@ -70,6 +70,9 @@ static void handle_add_command(PhoneBook &phonebook)
             break;
         std::cout << COLOR_RED << "Field cannot be empty." << COLOR_RESET << std::endl;
     }
+	phonebook.add_contact(data);
+    std::cout << COLOR_GREEN << "Contact Added Successfully!" << COLOR_RESET << std::endl;
+
 }
 
 static void handle_search_command(PhoneBook &phonebook)
@@ -78,11 +81,11 @@ static void handle_search_command(PhoneBook &phonebook)
     std::string input;
 
     phonebook.display_phonebook();
-    std::cout << "\nInsert Index: ";
+    std::cout << COLOR_YELLOW << "\nInsert Index: " << COLOR_RESET;
     std::cin >> index;
     if (std::cin.fail() || index < 0 || index >= phonebook.get_size())
     {
-        std::cout << COLOR_RED << "Invalid input! Please enter a number." << COLOR_RESET << std::endl;
+        std::cout << COLOR_RED << "Invalid input! Please enter a Valid Number." << COLOR_RESET << std::endl;
         std::cin.clear();
         std::getline(std::cin, input);
         return;
