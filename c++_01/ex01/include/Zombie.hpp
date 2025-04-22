@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:58 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 15:10:29 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:33:05 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 	Zombie(std::string name);
 	~Zombie(void);
 	void announce(void);
+	void setName(std::string name);
 };
 
 Zombie* zombieHorde(int N, std::string name);

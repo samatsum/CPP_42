@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 18:32:01 by samatsum         ###   ########.fr       */
+/*   Created: 2025/04/22 12:18:58 by samatsum          #+#    #+#             */
+/*   Updated: 2025/04/22 19:22:31 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Zombie.hpp"
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-int main(void)
+#pragma once
+
+#include <string>
+#include <iostream>
+#include <new>
+
+class Weapon
 {
-	Zombie *heap_array_zombie;
-	int N;
+private:
+	std::string _type;
+public:
+	const	std::string& getType();
+	void	setType(std::string weapon_type);
+	Weapon(const std::string& type);
+};
 
-	N = 3;
-	heap_array_zombie = zombieHorde(N, "Heap_Array_Zombie");
-	while (N--)
-		heap_array_zombie[N].announce();
-	delete[]  heap_array_zombie;
-	return (0);
-}
+#endif

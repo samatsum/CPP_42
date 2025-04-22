@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 18:32:01 by samatsum         ###   ########.fr       */
+/*   Created: 2025/04/22 12:18:58 by samatsum          #+#    #+#             */
+/*   Updated: 2025/04/22 19:26:11 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Zombie.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
-int main(void)
+#pragma once
+
+#include "Weapon.hpp"
+
+class HumanB
 {
-	Zombie *heap_array_zombie;
-	int N;
+    private:
+        std::string _name;
+        std::string _weapon;
+    public:
+        HumanB(std::string name);
+        void    setWeapon(Weapon weapon);
+        void    attack(void);
+};
 
-	N = 3;
-	heap_array_zombie = zombieHorde(N, "Heap_Array_Zombie");
-	while (N--)
-		heap_array_zombie[N].announce();
-	delete[]  heap_array_zombie;
-	return (0);
-}
+#endif

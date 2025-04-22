@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 14:52:17 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:31:19 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ int main(void)
 	randomChump("A");
 	randomChump("B");
 	randomChump("C");
-	randomChump("D");
-	randomChump("E");
-	randomChump("F");
-	randomChump("G");
 	delete heap_zombie;
 	return (0);
 }

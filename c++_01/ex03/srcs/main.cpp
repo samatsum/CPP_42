@@ -6,21 +6,30 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 18:32:01 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/22 19:03:46 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Zombie.hpp"
+#include "../include/Weapon.hpp"
+#include "../include/HumanA.hpp"
+#include "../include/HumanB.hpp"
 
-int main(void)
+int main()
 {
-	Zombie *heap_array_zombie;
-	int N;
-
-	N = 3;
-	heap_array_zombie = zombieHorde(N, "Heap_Array_Zombie");
-	while (N--)
-		heap_array_zombie[N].announce();
-	delete[]  heap_array_zombie;
-	return (0);
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanA bob("Bob", club);
+        bob.attack();
+        club.setType("some other type of club");
+        bob.attack();
+    }
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanB jim("Jim");
+        jim.setWeapon(club);
+        jim.attack();
+        club.setType("some other type of club");
+        jim.attack();
+    }
+    return 0;
 }
