@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 14:52:17 by samatsum         ###   ########.fr       */
+/*   Created: 2025/04/22 12:19:08 by samatsum          #+#    #+#             */
+/*   Updated: 2025/04/22 15:13:49 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../include/Zombie.hpp"
 
-int main(void)
+Zombie::Zombie(void)
+{	
+}
+
+Zombie::Zombie(std::string name)
 {
-	Zombie *heap_zombie;
-	
-	heap_zombie = newZombie("Samatsum");
-	heap_zombie->announce();
-	randomChump("A");
-	randomChump("B");
-	randomChump("C");
-	randomChump("D");
-	randomChump("E");
-	randomChump("F");
-	randomChump("G");
-	delete heap_zombie;
-	return (0);
+	this->_name = name;
+	std::cout << "Zombie \"" << this->_name << "\" created" << std::endl;
+}
+
+Zombie::~Zombie(void)
+{
+	std::cout << "Zombie \"" << this->_name << "\" destroyed" << std::endl;
+}
+
+void Zombie::announce(void)
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

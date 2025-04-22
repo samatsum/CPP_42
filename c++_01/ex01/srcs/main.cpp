@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 14:52:17 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:20:05 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int main(void)
 {
-	Zombie *heap_zombie;
-	
-	heap_zombie = newZombie("Samatsum");
-	heap_zombie->announce();
-	randomChump("A");
-	randomChump("B");
-	randomChump("C");
-	randomChump("D");
-	randomChump("E");
-	randomChump("F");
-	randomChump("G");
-	delete heap_zombie;
+	Zombie *heap_array_zombie;
+	int N;
+
+	N = 42;
+	heap_array_zombie = zombieHorde(N, "Heap_Array_Zombie");
+	while (N--)
+		heap_array_zombie[N].announce();
+	delete[]  heap_array_zombie;
 	return (0);
 }
