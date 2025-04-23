@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/23 14:08:11 by samatsum          #+#    #+#              #
-#    Updated: 2025/04/23 14:08:12 by samatsum         ###   ########.fr        #
+#    Created: 2025/04/23 14:07:34 by samatsum          #+#    #+#              #
+#    Updated: 2025/04/23 14:07:35 by samatsum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,14 @@ C++_FLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS_DIR = srcs
 OBJS_DIR = objects
 
-SRCS_FILES =	main.cpp\
+SRCS_FILES =	main.cpp \
+				Harl.cpp \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME = HI_THIS_IS_BRAIN
+NAME =  harlFilter
 
 all: $(NAME)
 

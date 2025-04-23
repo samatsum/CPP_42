@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:32:54 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/23 06:23:08 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:32:05 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	if (argc != 4)
 		return (std::cerr << "Wrong number of arguments" << std::endl, 0);
 	name_inputfile = argv[1];
-	name_outputfile = name_outputfile + argv[1] + ".replace";
+	name_outputfile = std::string(argv[1]) + ".replace";
 	if (open_files(name_inputfile, name_outputfile, &input_file, &output_file))
 		return (1);
 	read_and_replace(argv, &input_file, &output_file);
@@ -44,10 +44,9 @@ static int open_files(std::string name_inputfile, std::string name_outputfile,
 	(*output_file).open(name_outputfile, std::fstream::out);
 	if (!input_file || !output_file)
 	{
-        std::cerr << "Failed to open files!" << std::endl;
+        std::cerr << "Failed to open file" << std::endl;
 		(*input_file).close();
 		(*output_file).close();
-
         return (1);
     }
 	return (0);
