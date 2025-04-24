@@ -6,17 +6,11 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:01:23 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 23:34:59 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:00:07 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Zombie.hpp"
-
-void Zombie::setName(std::string name)
-{
-    this->_name = name;
-    std::cout << "Zombie \"" << this->_name << "\" created" << std::endl;
-}
 
 Zombie* zombieHorde(int N, std::string name)
 {

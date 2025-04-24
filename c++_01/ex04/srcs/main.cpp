@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:32:54 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/23 11:32:05 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:00:45 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int open_files(std::string name_inputfile, std::string name_outputfile,
 {
 	(*input_file).open(name_inputfile, std::fstream::in);
 	(*output_file).open(name_outputfile, std::fstream::out);
-	if (!input_file || !output_file)
+	if (!(*input_file) || !(*output_file))
 	{
         std::cerr << "Failed to open file" << std::endl;
 		(*input_file).close();
