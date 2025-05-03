@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:19:08 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/23 13:10:29 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:40:12 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    // メンバー関数ポインタの配列
     void (Harl::*functions[])() = {
         &Harl::debug,
         &Harl::info,
@@ -46,17 +45,13 @@ void Harl::complain(std::string level)
         &Harl::error
     };
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    
-    // レベルを探してメンバー関数を呼び出す
     for (int i = 0; i < 4; i++)
 	{
         if (level == levels[i])
 		{
-            (this->*functions[i])();  // メンバー関数の呼び出し
+            (this->*functions[i])();
             return;
         }
     }
-    
-    // 該当するレベルがない場合
     std::cout << "[ Unknown level ]" << std::endl;
 }

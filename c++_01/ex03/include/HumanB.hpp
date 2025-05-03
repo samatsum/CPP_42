@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:58 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 19:26:11 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:33:52 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class HumanB
 {
     private:
         std::string _name;
-        std::string _weapon;
+        Weapon      *_weapon;
     public:
         HumanB(std::string name);
-        void    setWeapon(Weapon weapon);
+        void    setWeapon(Weapon& weapon);
         void    attack(void);
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samatsum  <zunandkun@gmail.com      >      +#+  +:+       +#+        */
+/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:18:58 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/22 12:47:40 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:50:27 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <string>
 #include <iostream>
 #include <new>
+#include <cstdlib>
 
 class Zombie
 {

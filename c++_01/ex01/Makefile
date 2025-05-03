@@ -1,5 +1,5 @@
 C++ = c++
-C++_FLAGS = -Wall -Wextra -Werror -std=c++98
+C++FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR = srcs
 OBJS_DIR = objects

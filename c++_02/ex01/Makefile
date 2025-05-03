@@ -6,24 +6,24 @@
 #    By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 14:07:34 by samatsum          #+#    #+#              #
-#    Updated: 2025/05/01 16:48:18 by samatsum         ###   ########.fr        #
+#    Updated: 2025/05/03 16:00:44 by samatsum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-C++ = c++
-C++FLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR = srcs
 OBJS_DIR = objects
 
 SRCS_FILES =	main.cpp \
-				Harl.cpp \
+				Fixed.cpp \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =  Harl_2.0
+NAME =  Towards_a_more_useful_fixed-point_number_class
 
 all: $(NAME)
 
@@ -31,10 +31,10 @@ $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
 $(NAME): $(OBJS_DIR) $(OBJS)
-	$(C++) $(C++FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
-	$(C++) $(C++FLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJS_DIR)

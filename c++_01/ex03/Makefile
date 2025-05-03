@@ -6,12 +6,12 @@
 #    By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 14:08:04 by samatsum          #+#    #+#              #
-#    Updated: 2025/04/23 14:08:05 by samatsum         ###   ########.fr        #
+#    Updated: 2025/05/01 16:48:06 by samatsum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C++ = c++
-C++_FLAGS = -Wall -Wextra -Werror -std=c++98
+C++FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR = srcs
 OBJS_DIR = objects

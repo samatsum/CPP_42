@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:32:54 by samatsum          #+#    #+#             */
-/*   Updated: 2025/04/24 13:00:45 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:00:03 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 #include <iostream>
 #include <fstream>
 
-static int open_files(std::string name_inputfile, std::string name_outputfile,
+static int open_files(const std::string name_inputfile, const std::string name_outputfile,
 	std::ifstream *input_file, std::ofstream *output_file);
 static void read_and_replace(char **argv, std::ifstream *input_file, std::ofstream *output_file);
 
 int main(int argc, char **argv)
 {
-	std::string name_inputfile;
-	std::string name_outputfile;
+	const std::string name_inputfile = argv[1];;
+	const std::string name_outputfile = name_inputfile + ".replace";
 	std::ifstream input_file;
 	std::ofstream output_file;
 
 	if (argc != 4)
 		return (std::cerr << "Wrong number of arguments" << std::endl, 0);
-	name_inputfile = argv[1];
-	name_outputfile = std::string(argv[1]) + ".replace";
 	if (open_files(name_inputfile, name_outputfile, &input_file, &output_file))
 		return (1);
 	read_and_replace(argv, &input_file, &output_file);
@@ -37,11 +35,11 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-static int open_files(std::string name_inputfile, std::string name_outputfile,
+static int open_files(const std::string name_inputfile, const std::string name_outputfile,
 					std::ifstream *input_file, std::ofstream *output_file)
 {
-	(*input_file).open(name_inputfile, std::fstream::in);
-	(*output_file).open(name_outputfile, std::fstream::out);
+	(*input_file).open(name_inputfile.c_str(), std::fstream::in);
+	(*output_file).open(name_outputfile.c_str(), std::fstream::out);
 	if (!(*input_file) || !(*output_file))
 	{
         std::cerr << "Failed to open file" << std::endl;
