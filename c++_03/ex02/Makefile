@@ -6,7 +6,7 @@
 #    By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 19:38:57 by samatsum          #+#    #+#              #
-#    Updated: 2025/05/07 00:50:01 by samatsum         ###   ########.fr        #
+#    Updated: 2025/05/07 02:22:49 by samatsum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =  Serena,_my_love!
+NAME =   Repetitive_work
 
 all: $(NAME)
 
