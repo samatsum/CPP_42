@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 14:04:43 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/06 19:03:03 by samatsum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Fixed.hpp"
 
 Fixed::Fixed() : _value(0)
@@ -33,5 +45,6 @@ int Fixed::getRawBits(void) const
 
 void Fixed::setRawBits(int const raw)
 {
+    std::cout << "setRawBits member function called" << std::endl;
     this->_value = raw;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 14:48:19 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/06 19:03:27 by samatsum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
@@ -18,8 +30,10 @@ public:
     Fixed(const Fixed& original);
     Fixed& operator=(const Fixed& original);
     ~Fixed();
+    
     int getRawBits( void ) const;
     void setRawBits( int const raw );
+    
     float toFloat( void ) const;
     int toInt( void ) const;
 };

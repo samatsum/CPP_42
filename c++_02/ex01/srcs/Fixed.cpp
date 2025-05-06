@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 14:48:19 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/06 19:02:02 by samatsum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Fixed.hpp"
 
 Fixed::Fixed() : _value(0)
@@ -46,21 +58,22 @@ int Fixed::getRawBits(void) const
 
 void Fixed::setRawBits(int const raw)
 {
+    std::cout << "setRawBits member function called" << std::endl;
     this->_value = raw;
 }
 
-float	Fixed::toFloat(void)const
+float Fixed::toFloat() const
 {
-	return ((float)this->_value / (float)(1 << this->_fractional_bits));
+    return (static_cast<float>(this->_value) / (1 << _fractional_bits));
 }
 
-int	Fixed::toInt(void)const
+int Fixed::toInt() const
 {
-	return (this->_value >> this->_fractional_bits);
+    return (this->_value >> _fractional_bits);
 }
 
 std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed)
 {
     output_stream << fixed.toFloat();
-    return output_stream;
+    return (output_stream);
 }
