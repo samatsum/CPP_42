@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:38:52 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/07 00:13:45 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/07 00:46:02 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ ClapTrap::~ClapTrap()
 }
 
 /* ************************************************************************** */
-
 void    ClapTrap::attack(const std::string& target)
 {
     if (this->_hit_points > 0 && this->_energy_points > 0)
