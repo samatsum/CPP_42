@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 19:38:42 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/06 21:49:29 by samatsum         ###   ########.fr       */
+/*   Created: 2025/05/06 17:13:58 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/06 23:52:28 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_HPP
-# define POINT_HPP
+#include "../include/ClapTrap.hpp"
 
-class Point {
-private:
-    Fixed const _x;
-    Fixed const _y;
+int main()
+{
+	ClapTrap a("Bob");
+	ClapTrap b("Jim");
 
-public:
-    Point();
-    Point(const float x, const float y);
-    Point(const Point& src);
-    ~Point();
-    Point& operator=(const Point& rhs);
-
-    Fixed get_X() const;
-    Fixed get_Y() const;
-};
-
-bool bsp(Point const a, Point const b, Point const c, Point const point);
-
-#endif
+	a.attack("Micky");
+	a.takeDamage(10);
+	a.takeDamage(10);
+	a.beRepaired(5);
+	a.attack("Micky");
+	b.beRepaired(3);
+	for (int i = 0; i < 12; i++)
+		b.attack("Micky");
+	b.beRepaired(3);
+}
