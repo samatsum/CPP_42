@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:35 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/07 00:53:57 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/08 18:34:01 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &original)
 {
     if (this != &original)
     {
-        this->_name = original._name;
-        this->_hit_points = original._hit_points;
-        this->_energy_points = original._energy_points;
-        this->_attack_damage = original._attack_damage;
+        ClapTrap::operator=(original);
+        this->_guarding_gate = original._guarding_gate;
     }
     std::cout << "ScavTrap " << this->_name << " copy assignment operator called" << std::endl;
 	return *this;

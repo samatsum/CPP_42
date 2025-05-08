@@ -6,11 +6,12 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/08 17:01:57 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/08 19:38:02 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
 
@@ -21,10 +22,12 @@ class ScavTrap: public ClapTrap
 	public:
 		ScavTrap();
 		ScavTrap(std::string name);
-		ScavTrap(const ScavTrap &original);
-        ~ScavTrap();
-		ScavTrap &operator=(const ScavTrap &original);
+		ScavTrap(const ScavTrap &copy);
+        virtual ~ScavTrap();
+		ScavTrap &operator=(const ScavTrap &src);
 
 		void attack(const std::string &target);
 		void guardGate(void);
 };
+
+#endif
