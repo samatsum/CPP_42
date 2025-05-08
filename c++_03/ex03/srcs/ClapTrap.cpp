@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:38:52 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/08 17:00:15 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/08 21:40:41 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ ClapTrap::ClapTrap(const ClapTrap &original)
 , _energy_points(original._energy_points)
 , _attack_damage(original._attack_damage)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "ClapTrap " << this->_name << "Copy constructor called" << std::endl;
 }
 
 

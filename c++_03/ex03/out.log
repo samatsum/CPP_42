@@ -1,0 +1,223 @@
+
+========== 基本クラステスト ==========
+
+--- ClapTrap テスト ---
+ClapTrap Bob constructor called
+ClapTrap Bob attacks Target , causing 0 points of damage!
+ClapTrap Bob was attacked and lost 5 hit_points, Now hit_points is 5
+ClapTrap Bob repaired itself and gained 3 of hit points, Now hit_points is 8
+ClapTrap Bob Destructor called
+
+--- ScavTrap テスト ---
+ClapTrap Jim constructor called
+ScavTrap Jim Constructor called
+ScavTrap Jim attacks Target, causing 20 points of damage!
+ClapTrap Jim was attacked and lost 30 hit_points, Now hit_points is 70
+ClapTrap Jim repaired itself and gained 20 of hit points, Now hit_points is 90
+ScavTrap Jim is now guarding the gate.
+ScavTrap Jim Destructor called
+ClapTrap Jim Destructor called
+
+--- FragTrap テスト ---
+ClapTrap Mike constructor called
+FragTrap Mike Constructor called
+ClapTrap Mike attacks Target , causing 20 points of damage!
+ClapTrap Mike was attacked and lost 40 hit_points, Now hit_points is 60
+ClapTrap Mike repaired itself and gained 30 of hit points, Now hit_points is 90
+FragTrap Mikeasks for you about High Fives
+FragTrap Mike Destructor called
+ClapTrap Mike Destructor called
+
+
+========== DiamondTrap テスト ==========
+
+--- デフォルトコンストラクタ ---
+ClapTrap DEFAULT_clap_name constructor called
+ScavTrap Default Constructor called
+FragTrap Default Constructor called
+DiamondTrap Default Constructor called
+ScavTrap DEFAULT_clap_name attacks Target, causing 30 points of damage!
+ClapTrap DEFAULT_clap_name was attacked and lost 20 hit_points, Now hit_points is 80
+ClapTrap DEFAULT_clap_name repaired itself and gained 10 of hit points, Now hit_points is 90
+ScavTrap DEFAULT_clap_name is now guarding the gate.
+FragTrap DEFAULT_clap_nameasks for you about High Fives
+DiamondTrap name isDEFAULT
+ClapTrap name isDEFAULT_clap_name
+DiamondTrap DEFAULT Deconstructor for DEFAULT called
+FragTrap DEFAULT_clap_name Destructor called
+ScavTrap DEFAULT_clap_name Destructor called
+ClapTrap DEFAULT_clap_name Destructor called
+
+--- 名前付きコンストラクタ ---
+ClapTrap Emily_clap_name constructor called
+ScavTrap Emily_clap_name Constructor called
+FragTrap Emily_clap_name Constructor called
+DiamondTrap Emily Constructor called
+ScavTrap Emily_clap_name attacks Target, causing 20 points of damage!
+ClapTrap Emily_clap_name was attacked and lost 30 hit_points, Now hit_points is 70
+ClapTrap Emily_clap_name repaired itself and gained 15 of hit points, Now hit_points is 85
+ScavTrap Emily_clap_name is now guarding the gate.
+FragTrap Emily_clap_nameasks for you about High Fives
+DiamondTrap name isEmily
+ClapTrap name isEmily_clap_name
+DiamondTrap Emily Deconstructor for Emily called
+FragTrap Emily_clap_name Destructor called
+ScavTrap Emily_clap_name Destructor called
+ClapTrap Emily_clap_name Destructor called
+
+--- コピーコンストラクタ ---
+ClapTrap ORIGINAL_clap_name constructor called
+ScavTrap ORIGINAL_clap_name Constructor called
+FragTrap ORIGINAL_clap_name Constructor called
+DiamondTrap ORIGINAL Constructor called
+ClapTrap ORIGINAL_clap_name was attacked and lost 40 hit_points, Now hit_points is 60
+ClapTrap ORIGINAL_clap_nameCopy constructor called
+ScavTrap ORIGINAL_clap_name Copy Constructor called
+FragTrap ORIGINAL_clap_name Copy Constructor called
+DiamondTrap ORIGINAL Copy Constructor called for ORIGINAL
+オリジナルの状態：
+DiamondTrap name isORIGINAL
+ClapTrap name isORIGINAL_clap_name
+ScavTrap ORIGINAL_clap_name attacks Target, causing 20 points of damage!
+コピーの状態：
+DiamondTrap name isORIGINAL
+ClapTrap name isORIGINAL_clap_name
+ScavTrap ORIGINAL_clap_name attacks Target, causing 20 points of damage!
+DiamondTrap ORIGINAL Deconstructor for ORIGINAL called
+FragTrap ORIGINAL_clap_name Destructor called
+ScavTrap ORIGINAL_clap_name Destructor called
+ClapTrap ORIGINAL_clap_name Destructor called
+DiamondTrap ORIGINAL Deconstructor for ORIGINAL called
+FragTrap ORIGINAL_clap_name Destructor called
+ScavTrap ORIGINAL_clap_name Destructor called
+ClapTrap ORIGINAL_clap_name Destructor called
+
+--- 代入演算子 ---
+ClapTrap AssignOriginal_clap_name constructor called
+ScavTrap AssignOriginal_clap_name Constructor called
+FragTrap AssignOriginal_clap_name Constructor called
+DiamondTrap AssignOriginal Constructor called
+ClapTrap AssignOriginal_clap_name was attacked and lost 25 hit_points, Now hit_points is 75
+ClapTrap AssignedObject_clap_name constructor called
+ScavTrap AssignedObject_clap_name Constructor called
+FragTrap AssignedObject_clap_name Constructor called
+DiamondTrap AssignedObject Constructor called
+DiamondTrap AssignedObject Assignment Operator called
+ClapTrap AssignOriginal_clap_name Copy assignment operator called
+オリジナルの状態：
+DiamondTrap name isAssignOriginal
+ClapTrap name isAssignOriginal_clap_name
+ScavTrap AssignOriginal_clap_name attacks Target, causing 20 points of damage!
+代入先の状態：
+DiamondTrap name isAssignOriginal
+ClapTrap name isAssignOriginal_clap_name
+ScavTrap AssignOriginal_clap_name attacks Target, causing 20 points of damage!
+DiamondTrap AssignOriginal Deconstructor for AssignOriginal called
+FragTrap AssignOriginal_clap_name Destructor called
+ScavTrap AssignOriginal_clap_name Destructor called
+ClapTrap AssignOriginal_clap_name Destructor called
+DiamondTrap AssignOriginal Deconstructor for AssignOriginal called
+FragTrap AssignOriginal_clap_name Destructor called
+ScavTrap AssignOriginal_clap_name Destructor called
+ClapTrap AssignOriginal_clap_name Destructor called
+
+--- 継承された機能 ---
+ClapTrap Inheritance_clap_name constructor called
+ScavTrap Inheritance_clap_name Constructor called
+FragTrap Inheritance_clap_name Constructor called
+DiamondTrap Inheritance Constructor called
+ScavTrapのattack：
+ScavTrap Inheritance_clap_name attacks Target, causing 20 points of damage!
+ScavTrapのguardGate：
+ScavTrap Inheritance_clap_name is now guarding the gate.
+FragTrapのhighFiveGuys：
+FragTrap Inheritance_clap_nameasks for you about High Fives
+DiamondTrap固有のwhoAmI：
+DiamondTrap name isInheritance
+ClapTrap name isInheritance_clap_name
+DiamondTrap Inheritance Deconstructor for Inheritance called
+FragTrap Inheritance_clap_name Destructor called
+ScavTrap Inheritance_clap_name Destructor called
+ClapTrap Inheritance_clap_name Destructor called
+
+--- エネルギーと体力のテスト ---
+ClapTrap Endurance_clap_name constructor called
+ScavTrap Endurance_clap_name Constructor called
+FragTrap Endurance_clap_name Constructor called
+DiamondTrap Endurance Constructor called
+体力テスト：
+ClapTrap Endurance_clap_name was attacked and lost 70 hit_points, Now hit_points is 30
+ClapTrap Endurance_clap_name was attacked and lost 50 hit_points, Now hit_points is -20
+ScavTrap Endurance_clap_name is not able to attack Target, because he has not enough hit points.
+ClapTrap Endurance_clap_name is not able to repair itself, because He does not have hit_points 
+ClapTrap EnergyTest_clap_name constructor called
+ScavTrap EnergyTest_clap_name Constructor called
+FragTrap EnergyTest_clap_name Constructor called
+DiamondTrap EnergyTest Constructor called
+エネルギーテスト：
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 101
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 102
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 103
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 104
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 105
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 106
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 107
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 108
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 109
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 110
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 111
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 112
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 113
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 114
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 115
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 116
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 117
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 118
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 119
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 120
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 121
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 122
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 123
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 124
+ScavTrap EnergyTest_clap_name attacks Target, causing 20 points of damage!
+ClapTrap EnergyTest_clap_name repaired itself and gained 1 of hit points, Now hit_points is 125
+ScavTrap EnergyTest_clap_name is not able to attack Target, because he has no energy points left.
+ClapTrap EnergyTest_clap_name is not able to repair itself, because He does not have energy_points 
+FragTrap EnergyTest_clap_nameasks for you about High Fives
+ScavTrap EnergyTest_clap_name is now guarding the gate.
+DiamondTrap EnergyTest Deconstructor for EnergyTest called
+FragTrap EnergyTest_clap_name Destructor called
+ScavTrap EnergyTest_clap_name Destructor called
+ClapTrap EnergyTest_clap_name Destructor called
+DiamondTrap Endurance Deconstructor for Endurance called
+FragTrap Endurance_clap_name Destructor called
+ScavTrap Endurance_clap_name Destructor called
+ClapTrap Endurance_clap_name Destructor called
+
+
+========== テスト終了 ==========
+
