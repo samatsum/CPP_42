@@ -1,22 +1,31 @@
 #include "../include/DiamondTrap.hpp"
 
 // Constructors
-DiamondTrap::DiamondTrap(): ClapTrap("defaultDT_clap_trap")
+DiamondTrap::DiamondTrap()
+: ClapTrap("defaultDT_clap_trap")
+, ScavTrap()
+, FragTrap()
+, _name("defaultDT")
 {
-	this->_name = "defaultDT";
 	this->_hit_points = FragTrap::_hit_points;
 	this->_energy_points = ScavTrap::_energy_points;
 	this->_attack_damage = FragTrap::_attack_damage;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &copy): ClapTrap(copy), ScavTrap(copy), FragTrap(copy)
+DiamondTrap::DiamondTrap(const DiamondTrap &original)
+: ClapTrap(original)
+, ScavTrap(original)
+, FragTrap(original)
+, _name(original._name)
 {
-	*this = copy;
+    std::cout << "DiamondTrap " << this->_name << " Copy Constructor called for " << this->_name << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_trap")
+DiamondTrap::DiamondTrap(std::string name)
+: ClapTrap(name + "_clap_trap")
+, _name(name)
 {
-	this->_name = name;
+    std::cout << "DiamondTrap " << this->_name << " Constructor called" << std::endl;
 	this->_hit_points = FragTrap::_hit_points;
 	this->_energy_points = ScavTrap::_energy_points;
 	this->_attack_damage = FragTrap::_attack_damage;
@@ -25,18 +34,18 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_trap")
 // Deconstructors
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "DiamondTrap Deconstructor for " << this->_name << " called" << std::endl;
+	std::cout << "DiamondTrap " << this->_name << " Deconstructor for " << this->_name << " called" << std::endl;
 }
 
-// Overloaded Operators
-DiamondTrap &DiamondTrap::operator=(const DiamondTrap &src)
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &original)
 {
-	std::cout << "DiamondTrap Assignation operator called" << std::endl;
-	this->_name = src._name + "_clap_trap";
-	this->_hit_points = src._hit_points;
-	this->_energy_points = src._energy_points;
-	this->_attack_damage = src._attack_damage;
-	return *this;
+    std::cout << "DiamondTrap " << this->_name << " Assignment Operator called" << std::endl;
+    if (this != &original)
+    {
+        ClapTrap::operator=(original);
+        this->_name = original._name;
+    }
+    return *this;
 }
 
 // Public Methods
