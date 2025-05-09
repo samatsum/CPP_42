@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:38:42 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:03:07 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:05:19 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ class Animal
 		virtual ~Animal();
 		Animal &operator=(const Animal &original);
 
-        void makeSound(void);
+		std::string getType(void) const;
+        virtual void makeSound(void) const;
 };
 
 #endif

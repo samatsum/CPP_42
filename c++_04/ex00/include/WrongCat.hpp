@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum  <zunandkun@gmail.com      >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 18:49:56 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/08 22:15:53 by samatsum         ###   ########.fr       */
+/*   Created: 2025/05/09 16:12:50 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/09 16:13:00 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "WrongAnimal.hpp"
 
-class DiamondTrap: public ScavTrap, public FragTrap
+class WrongCat: public WrongAnimal
 {
-	private:
-		std::string _name;
 	public:
-		DiamondTrap();
-		DiamondTrap(const DiamondTrap &original);
-		DiamondTrap(std::string name);
-	    ~DiamondTrap();
-		DiamondTrap &operator=(const DiamondTrap &original);
+		WrongCat();
+		WrongCat(const WrongCat &copy);
+        ~WrongCat();
+		WrongCat &operator=(const WrongCat &src);
 
-		void attack(const std::string &target);
-		void whoAmI(void);
+		void makeSound(void) const; // オーバーライドするが、ポリモーフィズムは機能しない
 };
 
 #endif

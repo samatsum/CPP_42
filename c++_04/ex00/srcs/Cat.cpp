@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:35 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:01:16 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:23:27 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cat::Cat(const Cat &original)
 : Animal(original)
 , _type(original._type)
 {
-    std::cout << "Cat Copy constructor called" << std::endl;
+    std::cout << "Cat " << this->_type << " Copy constructor called" << std::endl;
 }
 
 
@@ -43,7 +43,7 @@ Cat::~Cat()
 }
 
 /* ************************************************************************** */
-void    makeSound(void)
+void    Cat::makeSound(void) const
 {
-    std::cout << "Cat bark   ...nothing" << std::endl;
+    std::cout << "Cat say Meow" << std::endl;
 }

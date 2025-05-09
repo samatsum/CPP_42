@@ -6,7 +6,7 @@
 #    By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 19:38:57 by samatsum          #+#    #+#              #
-#    Updated: 2025/05/08 22:22:29 by samatsum         ###   ########.fr        #
+#    Updated: 2025/05/09 16:17:40 by samatsum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,17 @@ SRCS_DIR = srcs
 OBJS_DIR = objects
 
 SRCS_FILES =	main.cpp \
-				ClapTrap.cpp \
-				ScavTrap.cpp \
-				FragTrap.cpp \
+				Animal.cpp \
+				Dog.cpp \
+				Cat.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =   Repetitive_work
+NAME =   Polymorphism
 
 all: $(NAME)
 

@@ -1,6 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 15:41:08 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/09 16:10:34 by samatsum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   Animal.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
@@ -21,7 +33,7 @@ Animal::Animal()
 Animal::Animal(const Animal &original)
 : _type(original._type)
 {
-    std::cout << "Animal Copy constructor called" << std::endl;
+    std::cout << "Animal " << this->_type << " Copy constructor called" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& original)
@@ -41,7 +53,12 @@ Animal::~Animal()
 
 /* ************************************************************************** */
 
-void    makeSound(void)
+std::string Animal::getType(void) const
+{
+    return this->_type;
+}
+
+void Animal::makeSound(void) const
 {
     std::cout << "Animal bark and make sound! " << std::endl;
 }

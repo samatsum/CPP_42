@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 01:27:37 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:01:23 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:11:07 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Dog::Dog()
 Dog::Dog(const Dog &original)
 : _type(original._type)
 {
-    std::cout << "Dog Copy constructor called" << std::endl;
+    std::cout << "Dog " << this->_type << " Copy constructor called" << std::endl;
 }
 
 
@@ -41,7 +41,7 @@ Dog::~Dog()
 }
 /* ************************************************************************** */
 
-void    makeSound(void)
+void Dog::makeSound(void) const
 {
-    std::cout << "Dog bark   WAOOOOOOOONN!!!" << std::endl;
+    std::cout << "Dog bark WAOOOOOOOONN!!!" << std::endl;
 }
