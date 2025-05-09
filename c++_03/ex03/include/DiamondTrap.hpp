@@ -12,7 +12,7 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		DiamondTrap();
 		DiamondTrap(const DiamondTrap &original);
 		DiamondTrap(std::string name);
-		virtual ~DiamondTrap();
+	    ~DiamondTrap();
 		DiamondTrap &operator=(const DiamondTrap &original);
 
 		void attack(const std::string &target);
