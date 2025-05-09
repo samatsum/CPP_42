@@ -6,21 +6,23 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 01:27:37 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:11:07 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:32:08 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Dog.hpp"
 
 Dog::Dog()
-: _type("Dog")
+: Animal()
 {
+	this->_type = "Dog";
     std::cout << "Dog Default constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &original)
-: _type(original._type)
+: Animal(original)
 {
+	this->_type = original._type;
     std::cout << "Dog " << this->_type << " Copy constructor called" << std::endl;
 }
 

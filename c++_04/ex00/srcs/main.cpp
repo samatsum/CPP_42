@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:13:58 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:17:25 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:38:12 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main()
     
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
+    std::cout << meta->getType() << " " << std::endl;
     
     i->makeSound(); // 猫の鳴き声を出力！
     j->makeSound(); // 犬の鳴き声を出力！
@@ -42,11 +43,11 @@ int main()
     const WrongAnimal* wrong_cat = new WrongCat();
     
     std::cout << wrong_cat->getType() << " " << std::endl;
+    std::cout << wrong_meta->getType() << " " << std::endl;
     
     wrong_cat->makeSound(); // WrongCatのmakeSoundではなく、WrongAnimalのmakeSoundが呼ばれる
     wrong_meta->makeSound();
-    
-    // メモリリークを防ぐために削除
+
     delete wrong_meta;
     delete wrong_cat;
     

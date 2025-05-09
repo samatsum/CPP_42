@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:05:56 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:30:57 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 class Cat: public Animal
 {
-	private:
-		std::string _type;
 	public:
 		Cat();
 		Cat(const Cat &copy);

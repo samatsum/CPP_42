@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:35 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/09 16:23:27 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:31:36 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 Cat::Cat()
 : Animal()
-, _type("Cat")
 {
+	this->_type = "Cat";
     std::cout << "Cat Default constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &original)
 : Animal(original)
-, _type(original._type)
 {
+	this->_type = original._type;
     std::cout << "Cat " << this->_type << " Copy constructor called" << std::endl;
 }
 
