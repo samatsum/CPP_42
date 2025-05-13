@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:13:58 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/12 17:06:29 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:13:48 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 
 int main()
 {
-
+	// {
+	// 	const Animal *animal = new Animal();
+	// 	animal->makeSound();
+	// }
 	{
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();

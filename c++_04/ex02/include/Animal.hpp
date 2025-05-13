@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 00:02:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/12 19:41:08 by samatsum         ###   ########.fr       */
+/*   Created: 2025/05/06 19:38:42 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/12 17:13:39 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include <string>
+#include <iostream>
 
-class Cat: public Animal
+class Animal
 {
-	private:
-		Brain *_brain;
+	protected:
+		std::string _type;
 	public:
-		Cat();
-		Cat(const Cat &copy);
-        ~Cat();
-		Cat &operator=(const Cat &original);
+		Animal();
+		Animal(const Animal &original);
+		virtual ~Animal();
+		Animal &operator=(const Animal &original);
 
-		virtual void makeSound(void) const;
-		std::string 	get_idea(int idea_index) const;
-		void 			set_idea(int idea_index, std::string idea_str);
+		std::string getType(void) const;
+        virtual void makeSound() const = 0;
+		//virtual void makeSound() const;
 };
 
 #endif

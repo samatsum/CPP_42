@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
+/*   By: samatsum  <zunandkun@gmail.com      >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 00:02:44 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/12 19:41:08 by samatsum         ###   ########.fr       */
+/*   Created: 2025/05/12 17:43:19 by samatsum          #+#    #+#             */
+/*   Updated: 2025/05/12 17:43:23 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
-#include "Animal.hpp"
+# include "AMateria.hpp"
 
-class Cat: public Animal
+class IMateriaSource
 {
-	public:
-		Cat();
-		Cat(const Cat &copy);
-        ~Cat();
-		Cat &operator=(const Cat &original);
-
-		virtual void makeSound(void) const;
+public:
+    virtual ~IMateriaSource() {}
+    virtual void learnMateria(AMateria*) = 0;
+    virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 #endif

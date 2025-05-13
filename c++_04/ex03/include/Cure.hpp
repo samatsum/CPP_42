@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 00:02:44 by samatsum          #+#    #+#             */
+/*   Created: 2025/05/12 17:44:50 by samatsum          #+#    #+#             */
 /*   Updated: 2025/05/12 19:41:08 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+# include "AMateria.hpp"
 
-class Cat: public Animal
+class Cure : public AMateria
 {
-	private:
-		Brain *_brain;
-	public:
-		Cat();
-		Cat(const Cat &copy);
-        ~Cat();
-		Cat &operator=(const Cat &original);
+public:
+    Cure();
+    Cure(const Cure& original);
+    ~Cure();
+    Cure& operator=(const Cure& original);
 
-		virtual void makeSound(void) const;
-		std::string 	get_idea(int idea_index) const;
-		void 			set_idea(int idea_index, std::string idea_str);
+    AMateria* clone() const;
+    void use(ICharacter& target);
 };
 
 #endif
