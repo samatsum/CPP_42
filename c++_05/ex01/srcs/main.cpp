@@ -44,6 +44,11 @@ int	main()
 	std::cout << std::endl;
 
 	// テスト4: フォームへの署名（成功）
+	// CEO（グレード5）とContract（署名グレード10）を作成
+	// 署名前: signed: no - まだ署名されていない
+	// 署名実行: CEOのグレード5 < 署名必要グレード10 なので署名成功
+	// CEO signed Employment Contract - 成功メッセージ
+	// 署名後: signed: yes - 署名済み状態に変化
 	try
 	{
 		std::cout << "=== Test 4: Successful signing ===" << std::endl;
@@ -62,6 +67,10 @@ int	main()
 	std::cout << std::endl;
 
 	// テスト5: フォームへの署名（失敗）
+	// Intern（グレード100）とSecret Document（署名グレード10）を作成
+	// 署名試行: Internのグレード100 > 署名必要グレード10 なので失敗
+	// Form grade is too low! - beSigned()内で例外発生
+	// 署名後も: signed: no - 署名状態は変化しない
 	try
 	{
 		std::cout << "=== Test 5: Failed signing ===" << std::endl;

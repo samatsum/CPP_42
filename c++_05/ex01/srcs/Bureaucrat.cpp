@@ -95,7 +95,6 @@ std::ostream&	operator<<(std::ostream& output_stream, const Bureaucrat& bureaucr
 }
 
 /* ************************************************************************** */
-// フォーム関連（追加）
 
 void	Bureaucrat::signForm(Form& form)
 {

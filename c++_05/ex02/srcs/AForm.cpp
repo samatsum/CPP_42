@@ -1,19 +1,19 @@
-#include "../includes/Form.hpp"        // 自身のヘッダーを最初に
-#include "../includes/Bureaucrat.hpp"  // 依存関係を後に
+#include "../includes/AForm.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 /* ************************************************************************** */
 // Orthodox Canonical Form
 
-Form::Form() 
+AForm::AForm() 
 	: _name("default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150)
 {
-	std::cout << "Form default constructor called" << std::endl;
+	std::cout << "AForm default constructor called" << std::endl;
 }
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
+AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
 	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-	std::cout << "Form parameterized constructor called" << std::endl;
+	std::cout << "AForm parameterized constructor called" << std::endl;
 	
 	// グレードの妥当性チェック
 	if (gradeToSign < 1 || gradeToExecute < 1)
@@ -22,21 +22,21 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
 		throw GradeTooLowException();
 }
 
-Form::Form(const Form& src)
+AForm::AForm(const AForm& src)
 	: _name(src._name), _isSigned(src._isSigned), 
 	  _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute)
 {
-	std::cout << "Form copy constructor called" << std::endl;
+	std::cout << "AForm copy constructor called" << std::endl;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
-	std::cout << "Form destructor called" << std::endl;
+	std::cout << "AForm destructor called" << std::endl;
 }
 
-Form&	Form::operator=(const Form& rhs)
+AForm&	AForm::operator=(const AForm& rhs)
 {
-	std::cout << "Form copy assignment operator called" << std::endl;
+	std::cout << "AForm copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		// constメンバは代入できないので、_isSignedのみコピー
@@ -48,22 +48,22 @@ Form&	Form::operator=(const Form& rhs)
 /* ************************************************************************** */
 // ゲッター
 
-const std::string&	Form::getName() const
+const std::string&	AForm::getName() const
 {
 	return (_name);
 }
 
-bool	Form::getIsSigned() const
+bool	AForm::getIsSigned() const
 {
 	return (_isSigned);
 }
 
-int	Form::getGradeToSign() const
+int	AForm::getGradeToSign() const
 {
 	return (_gradeToSign);
 }
 
-int	Form::getGradeToExecute() const
+int	AForm::getGradeToExecute() const
 {
 	return (_gradeToExecute);
 }
@@ -71,32 +71,49 @@ int	Form::getGradeToExecute() const
 /* ************************************************************************** */
 // メンバ関数
 
-void	Form::beSigned(const Bureaucrat& bureaucrat)
+void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (_isSigned)//　重複署名されたとき用。課題要件には無いけどまぁ…なんとなく。
-        std::cout << "Multiple signatures!!!!!!!!" << std::endl;
 	if (bureaucrat.getGrade() > _gradeToSign)
 		throw GradeTooLowException();
 	_isSigned = true;
 }
 
+void	AForm::execute(const Bureaucrat& executor) const
+{
+	// 署名されているかチェック
+	if (!_isSigned)
+		throw FormNotSignedException();
+	
+	// 実行者のグレードチェック
+	if (executor.getGrade() > _gradeToExecute)
+		throw GradeTooLowException();
+	
+	// 実際の実行処理（サブクラスで実装）
+	executeAction();
+}
+
 /* ************************************************************************** */
 // 例外クラスの実装
 
-const char*	Form::GradeTooHighException::what() const throw()
+const char*	AForm::GradeTooHighException::what() const throw()
 {
 	return ("Form grade is too high!");
 }
 
-const char*	Form::GradeTooLowException::what() const throw()
+const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return ("Form grade is too low!");
+}
+
+const char*	AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form is not signed!");
 }
 
 /* ************************************************************************** */
 // 出力演算子
 
-std::ostream&	operator<<(std::ostream& os, const Form& form)
+std::ostream&	operator<<(std::ostream& os, const AForm& form)
 {
 	os << "Form " << form.getName() 
 	   << ", signed: " << (form.getIsSigned() ? "yes" : "no")

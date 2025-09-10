@@ -45,7 +45,7 @@ int	main()
 	// テスト4: インクリメント・デクリメントのテスト
 	try
 	{
-		std::cout << "=== Test 4: Increment/Decrement ===" << std::endl;
+		std::cout << "=== Test 4: Increment ===" << std::endl;
 		Bureaucrat	dave("Dave", 2);
 		std::cout << dave << std::endl;
 		
@@ -61,10 +61,29 @@ int	main()
 
 	std::cout << std::endl;
 
-	// テスト5: コピーコンストラクタのテスト
+		// テスト5: インクリメント・デクリメントのテスト
 	try
 	{
-		std::cout << "=== Test 5: Copy constructor ===" << std::endl;
+		std::cout << "=== Test 5: Decrement ===" << std::endl;
+		Bureaucrat	carrot("Carrot", 149);
+		std::cout << carrot << std::endl;
+		
+		carrot.decrementGrade();
+		std::cout << "After decrement: " << carrot << std::endl;
+		
+		carrot.decrementGrade();  // これは例外を投げるはず
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+
+	// テスト6: コピーコンストラクタのテスト
+	try
+	{
+		std::cout << "=== Test 6: Copy constructor ===" << std::endl;
 		Bureaucrat	original("Original", 42);
 		Bureaucrat	copy(original);
 		std::cout << "Original: " << original << std::endl;

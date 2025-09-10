@@ -1,4 +1,5 @@
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/AForm.hpp"
 
 /* ************************************************************************** */
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
@@ -87,8 +88,40 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 /* ************************************************************************** */
 // 出力演算子
 
-std::ostream	&operator<<(std::ostream& output_stream, const Bureaucrat& bureaucrat)
+std::ostream&	operator<<(std::ostream& output_stream, const Bureaucrat& bureaucrat)
 {
 	output_stream << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return output_stream;
+}
+
+/* ************************************************************************** */
+
+void	Bureaucrat::signAForm(AForm& AForm)
+{
+	try
+	{
+		AForm.beSigned(*this);
+		std::cout << _name << " signed " << AForm.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << _name << " couldn't sign " << AForm.getName() 
+				  << " because " << e.what() << std::endl;
+	}
+}
+
+/* ************************************************************************** */
+
+void	Bureaucrat::executeAForm(const AForm& AForm) const
+{
+	try
+	{
+		AForm.execute(*this);
+		std::cout << _name << " executed " << AForm.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << _name << " couldn't execute " << AForm.getName()
+				  << " because " << e.what() << std::endl;
+	}
 }

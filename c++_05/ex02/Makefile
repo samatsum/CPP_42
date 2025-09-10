@@ -6,12 +6,16 @@ OBJS_DIR = objects
 
 SRCS_FILES =	main.cpp \
 				Bureaucrat.cpp \
+				AForm.cpp \
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =   No,you_need_form_28B,not_28C...
+NAME = No,you_need_form_28B,not_28C...
 
 all: $(NAME)
 
