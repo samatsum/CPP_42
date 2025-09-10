@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 00:02:35 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/12 17:06:56 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:20:39 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ Cat& Cat::operator=(const Cat& original)
         Animal::operator=(original);
         delete _brain;
         _brain = new Brain(*(original._brain));
+        //*(original._brain) - この*はデリファレンス（間接参照）演算子で、ポインタが指している実際のBrainオブジェクト本体にアクセスします。
+        //new Brain(*(original._brain)) - これは Brainクラスのコピーコンストラクタを呼び出し、元のBrainオブジェクトの内容に基づいて新しいBrainオブジェクトを作成しています。
     }
     std::cout << "Cat " << this->_type << " Copy assignment operator called" << std::endl;
     return *this;

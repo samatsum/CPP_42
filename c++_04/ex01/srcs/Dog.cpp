@@ -6,7 +6,7 @@
 /*   By: samatsum <samatsum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 01:27:37 by samatsum          #+#    #+#             */
-/*   Updated: 2025/05/12 17:06:29 by samatsum         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:21:07 by samatsum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ Dog::Dog(const Dog &original)
 {
 	this->_type = original._type;
     _brain = new Brain(*(original._brain)); 
+    //*(original._brain) - この*はデリファレンス（間接参照）演算子で、ポインタが指している実際のBrainオブジェクト本体にアクセスします。
+    //new Brain(*(original._brain)) - これは Brainクラスのコピーコンストラクタを呼び出し、元のBrainオブジェクトの内容に基づいて新しいBrainオブジェクトを作成しています。
     std::cout << "Dog " << this->_type << " Copy constructor called" << std::endl;
 }
 
