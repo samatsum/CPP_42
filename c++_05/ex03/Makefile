@@ -6,12 +6,17 @@ OBJS_DIR = objects
 
 SRCS_FILES =	main.cpp \
 				Bureaucrat.cpp \
+				AForm.cpp \
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp \
+				PresidentialPardonForm.cpp \
+				Intern.cpp
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =   At_least_this_beats_coffee-making
+NAME = At_least_this_beats_coffee-making
 
 all: $(NAME)
 
@@ -29,6 +34,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+#	rm -f *_shrubbery
 
 re: fclean all
 

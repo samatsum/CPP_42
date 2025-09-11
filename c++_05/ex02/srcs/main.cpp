@@ -9,13 +9,13 @@ int	main()
 	// テスト1: ShrubberyCreationForm - 成功ケース
 	try
 	{
-		std::cout << "=== Test 1: ShrubberyCreationForm (Success) ===" << std::endl;
+		std::cout << "=== Test 1: ShrubberyCreationForm ===" << std::endl;
 		Bureaucrat			gardener("Gardener", 100);
 		ShrubberyCreationForm	shrub("home");
 		
 		std::cout << shrub << std::endl;
-		gardener.signAForm(shrub);
-		gardener.executeAForm(shrub);
+		gardener.signForm(shrub);
+		gardener.executeForm(shrub);
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -26,13 +26,13 @@ int	main()
 	// テスト2: RobotomyRequestForm - 成功ケース  
 	try
 	{
-		std::cout << "=== Test 2: RobotomyRequestForm (Success) ===" << std::endl;
+		std::cout << "=== Test 2: RobotomyRequestForm ===" << std::endl;
 		Bureaucrat			surgeon("Surgeon", 40);
 		RobotomyRequestForm	robotomy("Bender");
 		
 		std::cout << robotomy << std::endl;
-		surgeon.signAForm(robotomy);
-		surgeon.executeAForm(robotomy);
+		surgeon.signForm(robotomy);
+		surgeon.executeForm(robotomy);
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -43,13 +43,13 @@ int	main()
 	// テスト3: PresidentialPardonForm - 成功ケース
 	try
 	{
-		std::cout << "=== Test 3: PresidentialPardonForm (Success) ===" << std::endl;
+		std::cout << "=== Test 3: PresidentialPardonForm ===" << std::endl;
 		Bureaucrat			president("President", 1);
 		PresidentialPardonForm	pardon("Ford Prefect");
 		
 		std::cout << pardon << std::endl;
-		president.signAForm(pardon);
-		president.executeAForm(pardon);
+		president.signForm(pardon);
+		president.executeForm(pardon);
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -65,7 +65,7 @@ int	main()
 		PresidentialPardonForm	pardon("Arthur Dent");
 		
 		std::cout << pardon << std::endl;
-		intern.signAForm(pardon);  // 失敗するはず
+		intern.signForm(pardon);  // 失敗するはず
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -82,8 +82,8 @@ int	main()
 		PresidentialPardonForm	pardon("Marvin");
 		
 		std::cout << pardon << std::endl;
-		signer.signAForm(pardon);    // 署名は成功
-		executor.executeAForm(pardon); // 実行は失敗
+		signer.signForm(pardon);    // 署名は成功
+		executor.executeForm(pardon); // 実行は失敗
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -99,7 +99,7 @@ int	main()
 		ShrubberyCreationForm	shrub("garden");
 		
 		std::cout << shrub << std::endl;
-		exec.executeAForm(shrub);  // 署名していないので失敗
+		exec.executeForm(shrub);  // 署名していないので失敗
 		std::cout << std::endl;
 	}
 	catch (std::exception& e)
@@ -118,8 +118,8 @@ int	main()
 		for (int i = 0; i < 5; i++)
 		{
 			RobotomyRequestForm robotomy(targets[i]);
-			surgeon.signAForm(robotomy);
-			surgeon.executeAForm(robotomy);
+			surgeon.signForm(robotomy);
+			surgeon.executeForm(robotomy);
 			std::cout << std::endl;
 		}
 	}
