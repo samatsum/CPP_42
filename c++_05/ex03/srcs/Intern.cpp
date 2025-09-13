@@ -22,7 +22,7 @@ Intern::~Intern()
 Intern&	Intern::operator=(const Intern& rhs)
 {
 	std::cout << "Intern copy assignment operator called" << std::endl;
-	(void)rhs;  // Internには状態がないので、何もすることがない
+	(void)rhs;
 	return (*this);
 }
 
@@ -66,12 +66,12 @@ AForm*	Intern::makeForm(const std::string& formName, const std::string& target)
 	{
 		if (formName == formNames[i])
 		{
-			std::cout << "Intern creates " << formName << std::endl;
+			std::cout << "\033[32m Intern creates \033[m" << formName << std::endl;
 			return ((this->*creators[i])(target));
 		}
 	}
 	
 	// 見つからなかった場合
-	std::cout << "Error: Unknown Form Name" << std::endl;
+	std::cout << "\033[31m Error: Unknown Form Name \033[m" << std::endl;
 	return (NULL);
 }

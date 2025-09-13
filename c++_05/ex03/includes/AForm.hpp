@@ -33,7 +33,7 @@ public:
 	void			beSigned(const Bureaucrat& bureaucrat);
 	void			execute(const Bureaucrat& executor) const;
 
-	// 純粋仮想関数（サブクラスで必須実装）
+	// 純粋仮想関数（サブクラスでオーバーライド実装）
 	virtual void	executeAction() const = 0;
 
 	// カスタム例外クラス

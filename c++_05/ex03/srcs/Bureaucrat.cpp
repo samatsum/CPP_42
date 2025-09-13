@@ -101,12 +101,12 @@ void	Bureaucrat::signForm(AForm& AForm)
 	try
 	{
 		AForm.beSigned(*this);
-		std::cout << _name << " signed " << AForm.getName() << std::endl;
+		std::cout << _name << "\033[32m signed \033[m" << AForm.getName() << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		std::cout << _name << " couldn't sign " << AForm.getName() 
-				  << " because " << e.what() << std::endl;
+		std::cout << _name << "\033[31m couldn't sign " << AForm.getName() 
+				  << " because \033[m" << e.what() << std::endl;
 	}
 }
 
@@ -117,7 +117,7 @@ void	Bureaucrat::executeForm(const AForm& AForm) const
 	try
 	{
 		AForm.execute(*this);
-		std::cout << _name << "\033[31m " << " executed " << "\033[m" << AForm.getName() << std::endl;
+		std::cout << _name << "\033[32m" << " executed " << "\033[m" << AForm.getName() << std::endl;
 	}
 	catch (std::exception& e)
 	{

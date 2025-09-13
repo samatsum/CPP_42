@@ -50,5 +50,5 @@ const std::string&	PresidentialPardonForm::getTarget() const
 
 void	PresidentialPardonForm::executeAction() const
 {
-	std::cout << _target << "\033[31m has been pardoned by Zaphod Beeblebrox.\033[m" << std::endl;
+	std::cout << _target << "\033[32m has been pardoned by Zaphod Beeblebrox.\033[m" << std::endl;
 }

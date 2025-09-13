@@ -9,6 +9,7 @@ int	main()
 {
 	// 乱数シードを最初に設定（ロボトミー用）
 	std::srand(std::time(NULL));
+	std::cout << std::endl;
 
 	// テスト1: Intern による ShrubberyCreationForm 作成と実行
 	try
@@ -26,13 +27,13 @@ int	main()
 			bureaucrat.executeForm(*form);
 			delete form;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
 	// テスト2: Intern による RobotomyRequestForm 作成と実行
 	try
 	{
@@ -49,13 +50,13 @@ int	main()
 			bureaucrat.executeForm(*form);
 			delete form;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
 	// テスト3: Intern による PresidentialPardonForm 作成と実行
 	try
 	{
@@ -72,13 +73,13 @@ int	main()
 			bureaucrat.executeForm(*form);
 			delete form;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
 	// テスト4: 存在しないフォーム名でのテスト
 	try
 	{
@@ -96,14 +97,14 @@ int	main()
 		{
 			std::cout << "Form creation failed as expected." << std::endl;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
-	// テスト5: 複数のフォーム作成（一括処理の例）
+	std::cout << std::endl;
+	// テスト5: 複数のフォーム作成
 	try
 	{
 		std::cout << "=== Test 5: Multiple form creation ===" << std::endl;
@@ -117,14 +118,15 @@ int	main()
 		
 		for (int i = 0; i < 3; i++)
 		{
+			std::cout << "//////////////////////////////////////////////" <<std::endl;
 			if (forms[i])
 			{
 				std::cout << *forms[i] << std::endl;
 				president.signForm(*forms[i]);
 				president.executeForm(*forms[i]);
 				delete forms[i];
-				std::cout << std::endl;
 			}
+			std::cout << "//////////////////////////////////////////////" <<std::endl;
 		}
 	}
 	catch (std::exception& e)
@@ -132,7 +134,8 @@ int	main()
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
-	// テスト6: 異なるグレードでの実行制限テスト
+	std::cout << std::endl;
+	// テスト6: 最低グレードでのテスト
 	try
 	{
 		std::cout << "=== Test 6: Grade restriction test ===" << std::endl;
@@ -144,17 +147,17 @@ int	main()
 		if (form)
 		{
 			std::cout << *form << std::endl;
-			lowGrade.signForm(*form);    // 失敗するはず
-			lowGrade.executeForm(*form); // 失敗するはず
+			lowGrade.signForm(*form);    // 失敗するはず（２５は必要）
+			lowGrade.executeForm(*form); // 失敗するはず（５は必要）
 			delete form;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
 	// テスト7: Internの複数インスタンス
 	try
 	{
@@ -177,14 +180,14 @@ int	main()
 			delete form1;
 			delete form2;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
-	// テスト8: 課題の例示されたコード
+	std::cout << std::endl;
+	// テスト8: 課題のコード
 	try
 	{
 		std::cout << "=== Test 8: Example from subject ===" << std::endl;
@@ -197,7 +200,6 @@ int	main()
 			std::cout << "Form created successfully: " << *rrf << std::endl;
 			delete rrf;
 		}
-		std::cout << std::endl;
 	}
 	catch (std::exception& e)
 	{

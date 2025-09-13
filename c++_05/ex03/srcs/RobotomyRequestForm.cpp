@@ -64,7 +64,7 @@ void	RobotomyRequestForm::executeAction() const
 	// 50%の確率で成功
 	if (std::rand() % 2 == 0)
 	{
-		std::cout << _target << "\033[31m has been robotomized successfully!\033[m" << std::endl;
+		std::cout << _target << "\033[32m has been robotomized successfully!\033[m" << std::endl;
 	}
 	else
 	{

@@ -55,7 +55,7 @@ void	ShrubberyCreationForm::executeAction() const
 	
 	if (!file.is_open())
 	{
-		std::cout << "Error: Could not create file " << filename << std::endl;
+		std::cout << "\033[31mError: Could not create file \033[m" << filename << std::endl;
 		return ;
 	}
 
@@ -90,5 +90,5 @@ void	ShrubberyCreationForm::executeAction() const
 	file << "               ...;%@@@@@%%:;;;;,.." << std::endl;
 
 	file.close();
-	std::cout << "\033[31mASCII trees have been planted in \033[m" << filename << std::endl;
+	std::cout << "\033[32mASCII trees have been planted in \033[m" << filename << std::endl;
 }
