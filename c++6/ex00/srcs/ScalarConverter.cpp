@@ -28,7 +28,6 @@ ScalarConverter::~ScalarConverter(void)
 void    ScalarConverter::convert(const std::string& str)
 {
     size_t  len = str.length(); //文字数
-    printf("len = %lu\n", len);
     e_type  type = whichType(str, len);
     switch(type)
     {

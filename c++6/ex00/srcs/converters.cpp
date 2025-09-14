@@ -43,12 +43,17 @@ void	convertSpecial(const std::string& str)
 /* ************************************************************************** */
 void	convertChar(const std::string& str)
 {
-	if (str[0] >= 33 && str[0] <= 126)
+	int targetIndex;
+
+	targetIndex = 0;
+	if (str[0] == '\'' && str[2] == '\'')
+		targetIndex = 1;
+	if (str[targetIndex] >= 33 && str[targetIndex] <= 126)
 	{
-		std::cout << "char  :'" << str[0] << "'" << std::endl;
-		std::cout << "int   :" << static_cast<int>(str[0]) << std::endl;
-		std::cout << "float :" << static_cast<float>(str[0]) << ".0f" << std::endl;
-		std::cout << "double:" << static_cast<double>(str[0]) << ".0" << std::endl;
+		std::cout << "char  :'" << str[targetIndex] << "'" << std::endl;
+		std::cout << "int   :" << static_cast<int>(str[targetIndex]) << std::endl;
+		std::cout << "float :" << static_cast<float>(str[targetIndex]) << ".0f" << std::endl;
+		std::cout << "double:" << static_cast<double>(str[targetIndex]) << ".0" << std::endl;
 	}
 	else
 		std::cout<< "char  :Non displayable" << std::endl;
@@ -93,6 +98,10 @@ void	convertFloat(const std::string& str, size_t len)
 		else 
 			std::cout << "char  :Non displayable" << std::endl;
 	}
+	if (f < INT_MIN || f > INT_MAX)
+		std::cout << "int   :impossible" << std::endl;
+	else
+		std::cout << "int   :" << static_cast<int>(f) << std::endl;
 	if ((f < FLT_MIN && f > -FLT_MIN) || (f > FLT_MAX || f < -FLT_MAX))
 		std::cout << "float :impossible" << std::endl;
 	else

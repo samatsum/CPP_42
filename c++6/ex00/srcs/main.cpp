@@ -25,6 +25,9 @@ int main(int argc, char **argv)
         std::cout << "負の最大値: " << -DBL_MIN << std::endl;
         std::cout << "負の最小値: " << -DBL_MAX << std::endl;
         std::cout << std::endl;
+        std::cout << "Except for char parameters, only the decimal notation will be used.(科学的記数法（e記法）は考慮する必要がないよん。)" << std::endl;
+        std::cout << "数字の'1'は、./Conversion_of_scalar_types \'1\'" << std::endl;
+        std::cout << "数値の'1'は、./Conversion_of_scalar_types 1" << std::endl;
 		return (1);
 	}
 
