@@ -12,22 +12,22 @@ int main(int argc, char **argv)
         std::cout << "Double: 0.0, -4.2, 4.2,...-inf, +inf, nan" << std::endl;
         std::cout << std::endl;
         
-        std::cout << "=== Float の境界値 ===" << std::endl;
+        std::cout << "=== 一応書いとくFloat の境界値 ===" << std::endl;
         std::cout << "正の最大値: " << FLT_MAX << "f" << std::endl;
         std::cout << "正の最小値: " << FLT_MIN << "f" << std::endl;// 0に最も近い正の値  
         std::cout << "負の最大値: " << -FLT_MIN << "f" << std::endl;// 0に最も近い負の値
         std::cout << "負の最小値: " << -FLT_MAX << "f" << std::endl;  
         std::cout << std::endl;
         
-        std::cout << "=== Double の境界値 ===" << std::endl;
+        std::cout << "=== 一応書いとくDouble の境界値 ===" << std::endl;
         std::cout << "正の最大値: " << DBL_MAX << std::endl;
         std::cout << "正の最小値: " << DBL_MIN << std::endl;
         std::cout << "負の最大値: " << -DBL_MIN << std::endl;
         std::cout << "負の最小値: " << -DBL_MAX << std::endl;
         std::cout << std::endl;
         std::cout << "Except for char parameters, only the decimal notation will be used.(科学的記数法（e記法）は考慮する必要がないよん。)" << std::endl;
-        std::cout << "数字の'1'は、./Conversion_of_scalar_types \'1\'" << std::endl;
-        std::cout << "数値の'1'は、./Conversion_of_scalar_types 1" << std::endl;
+        std::cout << "数字(char)の'1'は、./Conversion_of_scalar_types \'1\'" << std::endl;
+        std::cout << "数値(int)の'1'は、./Conversion_of_scalar_types 1" << std::endl;
 		return (1);
 	}
 

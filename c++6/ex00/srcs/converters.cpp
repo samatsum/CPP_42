@@ -87,9 +87,11 @@ void	convertFloat(const std::string& str, size_t len)
 {
 	size_t	dot_pos = str.find('.');
 	double	f = std::atof(str.c_str());
-	bool	isFloatInteger = onlyZero(str, len, dot_pos); 
+	bool	decimalPlacesZero = onlyZero(str, len, dot_pos); 
 
-	if (f < 0 || f > 127 || isFloatInteger == false)
+	if (decimalPlacesZero)//小数点以下全て０ならよぉ〜それは整数部だけが有効桁数ってことじゃねーのかぁ！？
+		len = dot_pos + 2; // '.'と'f'で＋２。
+	if (f < 0 || f > 127 || decimalPlacesZero == false)
 		std::cout << "char  :impossible" << std::endl;
 	else
 	{
@@ -106,23 +108,25 @@ void	convertFloat(const std::string& str, size_t len)
 		std::cout << "float :impossible" << std::endl;
 	else
 	{
-		if (isFloatInteger)
+		// 42.000001fが42Tokyo環境でのfloat精度限界だよん（8桁の数）。これ以上の桁数の数はdoubleでやりな。
+		if (len >= 10)
+			std::cout << "Attention : Float's Number of digits Overed 8 !!!" << std::endl;
+		if (decimalPlacesZero)
 			std::cout << "float :" << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f" << std::endl;
-		else // 42.000001fが42Tokyo環境でのfloat精度限界だよん（8桁の数）。これ以上の桁数の数はdoubleでやりな。
-		{
-			if (len >= 10)
-				std::cout << "Attention : Float's Number of digits Overed 8 !!!" << std::endl;
+		else
 			std::cout << "float :" << std::fixed << std::setprecision(len - 2 - dot_pos) << static_cast<float>(f) << "f" << std::endl;
-		}
 	}
-	if (isFloatInteger)
-		std::cout << "double:" << std::fixed << std::setprecision(1) << static_cast<double>(f) << std::endl;
+	if ((f < DBL_MIN && f > -DBL_MIN) || (f > DBL_MAX || f < -DBL_MAX))
+		std::cout << "double:impossible" << std::endl;
 	else
 	{
 		// 42.00000000000001が42Tokyo環境でのdouble精度限界だよん（15桁の数）。
 		if (len >= 18)
-			std::cout << "Attention : Double's Number of digits Overed 15 !!!" << std::endl;
-		std::cout << "double:" << std::fixed << std::setprecision(len - 2 - dot_pos) << static_cast<double>(f) << std::endl;
+				std::cout << "Attention : Double's Number of digits Overed 15 !!!" << std::endl;
+		if (decimalPlacesZero)
+			std::cout << "double:" << std::fixed << std::setprecision(1) << static_cast<double>(f) << std::endl;
+		else
+			std::cout << "double:" << std::fixed << std::setprecision(len - 2 - dot_pos) << static_cast<double>(f) << std::endl;
 	}
 }
 
@@ -131,9 +135,11 @@ void	convertDouble(const std::string& str, size_t len)
 {
 	size_t		dot_pos = str.find('.');
 	long double	d = std::atof(str.c_str());
-	bool		isDoubleInteger = onlyZero(str, len, dot_pos); 
+	bool		decimalPlacesZero = onlyZero(str, len, dot_pos); 
 
-	if (d < 0 || d > 127 || isDoubleInteger == false)
+	if (decimalPlacesZero)//小数点以下全て０ならよぉ〜それは整数部だけが有効桁数ってことじゃねーのかぁ！？
+		len = dot_pos + 1;// '.'で＋１。
+	if (d < 0 || d > 127 || decimalPlacesZero == false)
 		std::cout << "char  :impossible" << std::endl;
 	else
 	{
@@ -152,28 +158,25 @@ void	convertDouble(const std::string& str, size_t len)
 		std::cout << "float :impossible" << std::endl;
 	else
 	{
-		if (isDoubleInteger)
+		// 42.00001fが42Tokyo環境でのfloat精度限界だよん（8桁の数）。これ以上の桁数の数はdoubleでやりな。
+		if (len >= 9)
+			std::cout << "Attention : Float's Number of digits Overed 8 !!!" << std::endl;
+		if (decimalPlacesZero)
 			std::cout << "float :" << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
-		else // 42.00001fが42Tokyo環境でのfloat精度限界だよん（8桁の数）。これ以上の桁数の数はdoubleでやりな。
-		{
-			if (len >= 9)
-				std::cout << "Attention : Float's Number of digits Overed 8 !!!" << std::endl;
+		else 
 			std::cout << "float :" << std::fixed << std::setprecision(len - 1 - dot_pos) << static_cast<float>(d) << "f" << std::endl;
-		}
 	}
 	
 	if ((d < DBL_MIN && d > -DBL_MIN) || (d > DBL_MAX || d < -DBL_MAX))
 		std::cout << "double:impossible" << std::endl;
 	else
 	{
-		if (isDoubleInteger)
+		// 42.00000000000001が42Tokyo環境でのdouble精度限界だよん（15桁の数）。
+		if (len >= 17)
+			std::cout << "Attention : Double's Number of digits Overed 15 !!!" << std::endl;
+		if (decimalPlacesZero)
 			std::cout << "double:" << std::fixed << std::setprecision(1) << d << std::endl;
 		else
-		{
-			// 42.00000000000001が42Tokyo環境でのdouble精度限界だよん（15桁の数）。
-			if (len >= 17)
-				std::cout << "Attention : Double's Number of digits Overed 15 !!!" << std::endl;
 			std::cout << "double:" << std::fixed << std::setprecision(len - 1 - dot_pos) << d << std::endl;
-		}
 	}
 }
