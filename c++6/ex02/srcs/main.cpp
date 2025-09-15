@@ -29,7 +29,7 @@ Base *generate(void)
 
 void identify(Base *Test)
 {
-	if (dynamic_cast<A *>(Test))
+	if (dynamic_cast<A *>(Test))//// 失敗時: nullptr を返す
 		std::cout << "A is the identified type" << std::endl;
 	else if (dynamic_cast<B *>(Test))
 		std::cout << "B is the identified type" << std::endl;
@@ -39,56 +39,52 @@ void identify(Base *Test)
 		std::cout << "\033[31m Unknown Type Base \033[m" << std::endl;
 }
 
-// needed for the recursive nature of identify(Base &Test)
-static int i = 0;
-static std::string classes[] = {"A", "B", "C"};
-
 void identify(Base &Test)
 {
-	while (i < 3)
+    try {
+        A &a = dynamic_cast<A &>(Test);// 例えばB型のオブジェクトをA型のaという参照（別名）に変換しようとすると、std::bad_cast例外が自動的に投げられる->catchに飛ぶ。
+        (void)a;
+        std::cout << "A is the identified type" << std::endl;
+        return;
+    }
+    catch (std::exception &e)
 	{
-		void *foo = NULL; // only to initialize the unused var
-		Base &unused = (Base &)foo; // only to prevent the -Werror from triggering for unused value of the casts
-		try
-		{
-			if (i == 0)
-				unused = dynamic_cast<A &>(Test);
-			else if (i == 1)
-				unused = dynamic_cast<B &>(Test);
-			else if (i == 2)
-				unused = dynamic_cast<C &>(Test);
-			else
-				std::cout << "unknow type" << std::endl;
-			(void)unused;
-		}
-		catch (std::exception &e)
-		{
-			// std::cout << e.what() << std::endl; //enable to see what exception was cought
-			i++;
-			identify(Test);
-			return;
-		}
-		std::cout << classes[i] << " is the identified type" << std::endl;
-		i = 0;
-		break;
-	}
+    }
+    
+    try {
+        B &b = dynamic_cast<B &>(Test);
+        (void)b;
+        std::cout << "B is the identified type" << std::endl;
+        return;
+    }
+    catch (std::exception &e)
+	{
+    }
+    
+    try {
+        C &c = dynamic_cast<C &>(Test);
+        (void)c;
+        std::cout << "C is the identified type" << std::endl;
+        return;
+    }
+    catch (std::exception &e)
+	{
+        std::cout << "\033[31m Unknown Type Base \033[m" << std::endl;
+    }
 }
 
 int main()
 {
-	for (int j = 0; j < 5; j++)
+	Base *Test = generate();
+	if (Test == NULL)
+		return (1);
+	else
 	{
-		Base *Test = generate();
-		if (Test == NULL)
-			return (1);
-		else
-		{
-			identify(Test);
-			identify(*Test);
-			delete (Test);
+		identify(Test);
+		identify(*Test);
+		delete (Test);
 
-			std::cout << std::endl;
-		}
+		std::cout << std::endl;
 	}
 	return (0);
 }
