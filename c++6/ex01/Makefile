@@ -35,7 +35,7 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-# static_cast: 関連する型間の安全な変換
-# dynamic_cast: 実行時型チェック
-# const_cast: const修飾子の変更
-# reinterpret_cast: バイナリレベルでの再解釈
+# static_cast: コンパイル時に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# dynamic_cast: 実行時型に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# const_cast: 実行時const修飾子の変更（チェックなんてしない）
+# reinterpret_cast: 実行時バイナリレベルでの再解釈（チェックなんてしない）

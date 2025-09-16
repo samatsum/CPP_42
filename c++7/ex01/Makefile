@@ -4,17 +4,13 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS_DIR = srcs
 OBJS_DIR = objects
 
-SRCS_FILES =	Base.cpp \
-				A.cpp \
-				B.cpp \
-				C.cpp \
-				main.cpp \
+SRCS_FILES =	main.cpp \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =  Identify_real_type
+NAME =  Iter
 
 all: $(NAME)
 
