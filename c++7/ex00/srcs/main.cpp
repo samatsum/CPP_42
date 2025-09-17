@@ -5,7 +5,7 @@ int main( void )
 {
 	int a = 2;
 	int b = 3;
-	::swap( a, b );
+	::swap( a, b );//::swapと書くことで「自分で実装したグローバルなswap関数」を確実に呼び出せる
 	std::cout << "a = " << a << ", b = " << b << std::endl;
 	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
