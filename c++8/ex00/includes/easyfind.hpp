@@ -14,6 +14,7 @@
 #include <iterator>
 #include <algorithm>
 
+//typenameはコンパイラに「変数ではなく型であること」を伝えるためにある。
 class NoOccurrenceFoundException : public std::exception
 {
 	public:

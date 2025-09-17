@@ -42,7 +42,7 @@ int test_Mine()
         bulkSpan.multipleAdd(sourceNumbers.begin(), sourceNumbers.end());
         
         std::cout << "After multipleAdd: ";
-        bulkSpan.printvec();
+        bulkSpan.printVector();
         
         std::cout << "Shortest span: " << bulkSpan.shortestSpan() << std::endl;
         std::cout << "Longest span: " << bulkSpan.longestSpan() << std::endl;

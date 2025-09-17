@@ -1,37 +1,40 @@
 #ifndef MUTANTSTACK_HPP
 # define MUTANTSTACK_HPP
 
-# define RESET  "\033[0m" 
-# define RED    "\033[31m"
-# define GREEN  "\033[32m"
-# define YELLOW "\033[33m"
-# define BLUE   "\033[34m"
-
-# include <iostream>
-# include <stack>
-
-/*
-we basically override the stack by referring to its underlying container
-using type alias to sideline its lack of iterator 
-*/
+#include <exception>
+#include <vector>
+#include <list>
+#include <deque>
+#include <iomanip>
+#include <iterator>
+#include <algorithm>
+#include <cstddef>
+#include <cctype>
+#include <string>
+#include <limits>
+#include <cstdlib> 
+#include <ctime>
+#include <iostream>
+#include <stack>
 
 template<typename T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack<T>//public継承により、std::stackの全ての公開メンバー関数（push、pop、top、size、empty等）がMutantStackでも利用可能になるぞい！ // https://cpprefjp.github.io/reference/stack/stack.html
+
 {
 public:
 	MutantStack();
 	~MutantStack();
 	MutantStack(const MutantStack& src);
 	MutantStack<T>& operator=(const MutantStack<T>& src);
-
-	typedef typename std::stack<T>::container_type under_ctr;
-	typedef typename under_ctr::iterator iterator;
-	typedef  typename under_ctr::const_iterator const_iterator;
 	
+	//std::stackは内部的に他のコンテナ（デフォルトではstd::deque）を使用しており、その型をcontainer_typeとして公開しています。
+	typedef typename std::stack<T>::container_type::iterator iterator;// その内部コンテナのイテレータ型
+	//　今の「iteratorの意味って？」
+	// 「std::stack<T> が内部で使っているコンテナ container_type （つまりstd::deque<T>）」が持っているイテレータを、 iterator という型名 (typename)で使えるようにしているということ。
+	//つまり？　→ iteratorは内部コンテナのイテレータ！
+
 	iterator begin();
 	iterator end();
-	const_iterator begin() const;
-	const_iterator end() const;
 };
 
 # include "MutantStack.tpp"

@@ -36,7 +36,7 @@ class	Span
         int shortestSpan() const;
         int longestSpan() const;
         void multipleAdd(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-        void printvec() const;
+        void printVector() const;
 };
 
 #endif

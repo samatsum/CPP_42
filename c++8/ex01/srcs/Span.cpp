@@ -57,7 +57,7 @@ int Span::longestSpan() const
 }
 
 /* ************************************************************************** */
-void Span::printvec() const
+void Span::printVector() const
 {
 	if (_vec.empty())
 	{
