@@ -17,6 +17,9 @@
 #include <iostream>
 #include <cctype>
 #include <string>
+#include <limits>
+#include <cstdlib> 
+#include <ctime>
 
 class	Span
 {
