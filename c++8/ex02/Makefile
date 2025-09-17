@@ -10,7 +10,7 @@ SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
 
-NAME =   Array
+NAME =   Mutated_abomination
 
 all: $(NAME)
 
