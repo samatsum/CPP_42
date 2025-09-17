@@ -49,6 +49,27 @@ int test_Mine()
     } catch (const std::exception& e) {
         std::cout << "ERROR :in multipleAdd test: " << e.what() << std::endl;
     }
+
+    std::cout << std::endl;
+    std::cout<< "Test vector large range" << std::endl;
+	Span largeSpan = Span(999999);
+	std::vector<int> largeVec;
+	std::srand(time(NULL));
+	for (unsigned int i = 0; i < 999999; i++)
+	{
+		int random_int = rand() % 100000000;
+		largeVec.push_back(random_int);
+	}
+	try
+	{
+		largeSpan.multipleAdd(largeVec.begin(), largeVec.end());
+		std::cout << "shortest span: " << largeSpan.shortestSpan() << std::endl;
+		std::cout << "longest span: " << largeSpan.longestSpan() << std::endl;
+	}
+    catch (std::exception &e)
+	{
+		std::cout << "ERROR :in LargeVector test: " << e.what() << std::endl;
+	}
     
     std::cout << std::endl;
     std::cout << "4. Testing Capacity Overflow Exception:" << std::endl;
@@ -82,8 +103,6 @@ int test_Mine()
 
     std::cout << std::endl;
     std::cout << "5. Testing Insufficient Elements Exception:" << std::endl;
-    
-    // 空のSpanでのテスト
     try {
         Span emptySpan(5);
         emptySpan.shortestSpan(); // 例外が発生するはず
@@ -91,7 +110,6 @@ int test_Mine()
     } catch (const std::out_of_range& e) {
         std::cout << "Empty span exception (shortest): " << e.what() << std::endl;
     }
-    
     try {
         Span emptySpan(5);
         emptySpan.longestSpan(); // 例外が発生するはず
@@ -99,8 +117,6 @@ int test_Mine()
     } catch (const std::out_of_range& e) {
         std::cout << "Empty span exception (longest): " << e.what() << std::endl;
     }
-    
-    // 1要素のSpanでのテスト
     try {
         Span singleSpan(5);
         singleSpan.addNumber(42);
