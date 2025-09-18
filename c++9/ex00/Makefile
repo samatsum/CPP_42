@@ -1,38 +1,41 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/18 15:39:27 by cgodecke          #+#    #+#              #
-#    Updated: 2024/04/03 14:05:39 by cgodecke         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
-C++ = c++
-C++_FLAGS = -Wall -Wextra -Werror -std=c++98
-INFILES = 	main.cpp\
-			BitcoinExchange.cpp\
+SRCS_DIR = srcs
+OBJS_DIR = objects
 
-OBJFILES = $(INFILES:.cpp=.o)
+SRCS_FILES =	main.cpp \
+				BitcoinExchange.cpp\
 
-NAME = btc
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
+
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
+
+NAME =  btc
 
 all: $(NAME)
 
-$(NAME):$(OBJFILES)
-	$(C++) $(C++_FLAGS) $(OBJFILES) -o $(NAME) 
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
-%.o: %.cpp
-	$(C++) $(C++_FLAGS) -c $< -o $@
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJFILES)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+#	rm -f *_shrubbery
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+# static_cast: コンパイル時に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# dynamic_cast: 実行時に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# const_cast: 実行時const修飾子の変更（型変換チェックなんてしない）
+# reinterpret_cast: 実行時バイナリレベルでの再解釈（型変換チェックなんてしない）

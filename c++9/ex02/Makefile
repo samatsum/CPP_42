@@ -1,39 +1,41 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cgodecke <cgodecke@student.42wolfsburg.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/29 20:00:53 by cgodecke          #+#    #+#              #
-#    Updated: 2024/04/03 15:11:25 by cgodecke         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = PmergeMe
-
 CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS_DIR = srcs
+OBJS_DIR = objects
 
-SRCS := main.cpp PmergeMe.cpp
+SRCS_FILES =	main.cpp \
+				PmergeMe.cpp \
 
-OBJS := $(SRCS:%.cpp=%.o)
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
-.PHONY: clean fclean re all
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.cpp=.o))
+
+NAME =   PmergeMe
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -I. -c $< -o $@
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+#	rm -f *_shrubbery
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
+# static_cast: コンパイル時に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# dynamic_cast: 実行時に型変換可能かチェックするぞ。実行時に型変換するぞ。
+# const_cast: 実行時const修飾子の変更（型変換チェックなんてしない）
+# reinterpret_cast: 実行時バイナリレベルでの再解釈（型変換チェックなんてしない）
