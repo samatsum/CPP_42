@@ -35,7 +35,7 @@ public:
     
 private:
     // Ford-Johnson algorithmのコア機能
-    void fordJohnsonSortVector(std::vector<int>& vec, int order = 1);
+    void fordJohnsonSortVector(std::vector<int>& vec, int order);
     
     // Jacobsthal数列の計算（挿入順序の最適化に使用）
     int jacobsthal(int n) const;

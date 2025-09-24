@@ -116,14 +116,19 @@ int PmergeMe::jacobsthal(int n) const {
 // メインのソート関数
 void PmergeMe::sortVector() {
     _start_time = std::clock();  // 計測開始
-    fordJohnsonSortVector(_containerVector);
+    fordJohnsonSortVector(_containerVector, 1);
     _end_time = std::clock();    // 計測終了
 }
 
 // Ford-Johnson algorithmの実装
 // なぜこの実装か：再帰的にペアを作り、比較・マージすることで、
 // 比較回数を最小化する階層的なソートを実現
-void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order) {
+// order = 1 → 個々の要素をペアとして扱う
+// order = 2 → 2要素のグループをペアとして扱う  
+// order = 4 → 4要素のグループをペアとして扱う
+// order = 8 → 8要素のグループをペアとして扱う
+void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order)
+{
     // ベースケース：要素が2未満の場合は処理不要
     int unit_size = vec.size() / order;
     if (unit_size < 2)
@@ -133,7 +138,7 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order) {
     bool has_odd = (unit_size % 2 == 1);
     
     std::vector<int>::iterator start = vec.begin();
-    std::vector<int>::iterator end = vec.begin() + (order * unit_size - (has_odd ? order : 0));
+    std::vector<int>::iterator end = vec.begin() + (order * unit_size - (has_odd ? order : 0));//余った要素は後で挿入フェーズで処理
     
     /* 
     ** ペアワイズ比較フェーズ
@@ -146,11 +151,14 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order) {
     ** 例：order=2の場合  
     ** [24, 25], [22, 23] → 25 > 23 なので [22, 23], [24, 25] に並べ替え
     */
-    for (std::vector<int>::iterator it = start; it < end; it += (order * 2)) {
+    for (std::vector<int>::iterator it = start; it < end; it += (order * 2))
+    {
         // 各グループの最後の要素を比較
-        if (*(it + (order - 1)) > *(it + ((order * 2) - 1))) {
+        if (*(it + (order - 1)) > *(it + ((order * 2) - 1)))
+        {
             // グループ全体をスワップ
-            for (int i = 0; i < order; i++) {
+            for (int i = 0; i < order; i++)
+            {
                 std::swap(*(it + i), *(it + i + order));
             }
         }
@@ -207,8 +215,8 @@ void PmergeMe::insertionPhase(std::vector<int>& main_chain,
                               std::vector<int>& leftover,
                               std::vector<int>& vec,
                               bool has_odd,
-                              int order) {
-    
+                              int order)
+{
     std::vector<int>::iterator insert_pos;
     
     // ペンドチェーンが1要素の場合の単純な処理
@@ -276,6 +284,7 @@ void PmergeMe::insertionPhase(std::vector<int>& main_chain,
     ** なぜこの処理か：メインチェーンの各要素に対応する
     ** 元のグループ全体を正しい順序で配置し直す必要がある
     */
+   // これ、もともと元の配列をコピーしたものを作っておけば良いんじゃないの？
     std::vector<int> result;
     for (std::vector<int>::iterator it = main_chain.begin(); it != main_chain.end(); ++it) {
         // 元の配列から該当する値を探し、そのグループ全体をコピー
@@ -313,6 +322,7 @@ void PmergeMe::printTime() const {
 }
 
 // サイズ取得
+//これどこで使われてるの？
 size_t PmergeMe::size() const {
-    return _containerVector.size();
+    return (_containerVector.size());
 }
