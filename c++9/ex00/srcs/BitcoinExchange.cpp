@@ -138,14 +138,14 @@ void BitcoinExchange::findCalc(std::string date, float value)
 /* ************************************************************************** */
 void BitcoinExchange::readParse(char *argv)
 {
-    std::ifstream inputFile(argv);
+    std::ifstream input_file(argv);
     std::string input;
     std::string date;
     float value;
 
-    if (!inputFile.is_open())
-        std::cout << "Error: could not open inputFile." << std::endl;
-    while (std::getline(inputFile, input))
+    if (!input_file.is_open())
+        std::cout << "Error: could not open input_file." << std::endl;
+    while (std::getline(input_file, input))
     {
         if (input.empty())
             continue;
