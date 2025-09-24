@@ -105,7 +105,7 @@ bool PmergeMe::validateInput(const std::string& str) {
 // C++98対応：std::roundが使えないため、+0.5して切り捨てる
 int PmergeMe::jacobsthal(int n) const {
     double result = (std::pow(2.0, n + 1) + std::pow(-1.0, n)) / 3.0;
-    // C++98での四捨五入実装
+    // C++98での四捨五入実装//そもそも四捨五入は必須なの？
     if (result >= 0) {
         return static_cast<int>(result + 0.5);
     } else {
@@ -151,6 +151,7 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order)
     ** 例：order=2の場合  
     ** [24, 25], [22, 23] → 25 > 23 なので [22, 23], [24, 25] に並べ替え
     */
+    //forは基本的にwhile()でやってほしい。
     for (std::vector<int>::iterator it = start; it < end; it += (order * 2))
     {
         // 各グループの最後の要素を比較
@@ -184,7 +185,8 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec, int order)
     main_chain.push_back(*(start + order * 2 - 1));
     
     // 残りの要素をメインチェーンとペンドチェーンに分配
-    for (std::vector<int>::iterator it = start + order * 2; it < end; it += order) {
+    for (std::vector<int>::iterator it = start + order * 2; it < end; it += order)
+    {
         pend_chain.push_back(*(it + order - 1));
         it += order;
         if (it < end) {
