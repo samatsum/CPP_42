@@ -31,12 +31,14 @@
 int main(int argc, char **argv) {
     // 引数チェック
     // なぜこのチェックか：最低でも2つの引数（プログラム名 + 1つ以上の数値）が必要
-    if (argc < 2) {
+    if (argc < 2)
+    {
         std::cerr << "Error" << std::endl;
-        return 1;
+        return (1);
     }
     
-    try {
+    try
+    {
         // PmergeMeオブジェクトの作成と初期化
         // なぜこの実装か：コンストラクタで引数をパースし、
         // 不正な入力があれば例外を投げる設計
@@ -63,7 +65,9 @@ int main(int argc, char **argv) {
         // "Time to process a range of N elements with std::vector : X.XXXXXX s"
         sorter.printTime();
         
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         /*
         ** エラー処理
         ** なぜこの例外処理か：
@@ -72,8 +76,8 @@ int main(int argc, char **argv) {
         ** - 課題要件では"Error"のみを表示
         */
         std::cerr << "Error" << std::endl;
-        return 1;
+        return (1);
     }
     
-    return 0;
+    return (0);
 }

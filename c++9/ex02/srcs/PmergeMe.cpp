@@ -14,18 +14,25 @@
 #include <cctype>  // for std::isdigit
 
 // デフォルトコンストラクタ
-PmergeMe::PmergeMe() : _start_time(0), _end_time(0) {}
+PmergeMe::PmergeMe() : _start_time(0), _end_time(0)
+{}
 
 // デストラクタ
-PmergeMe::~PmergeMe() {}
+PmergeMe::~PmergeMe()
+{}
 
 // コピーコンストラクタ
 PmergeMe::PmergeMe(const PmergeMe& src) 
-    : _containerVector(src._containerVector), _start_time(src._start_time), _end_time(src._end_time) {}
+:_containerVector(src._containerVector),
+ _start_time(src._start_time), 
+ _end_time(src._end_time)
+ {}
 
 // 代入演算子
-PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
-    if (this != &rhs) {
+PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
+{
+    if (this != &rhs)
+    {
         _containerVector = rhs._containerVector;
         _start_time = rhs._start_time;
         _end_time = rhs._end_time;
@@ -35,13 +42,15 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
 
 // 引数付きコンストラクタ
 // なぜこの実装か：コマンドライン引数を整数のベクターに変換する
-PmergeMe::PmergeMe(char **av) : _start_time(0), _end_time(0) {
+PmergeMe::PmergeMe(char **av) : _start_time(0), _end_time(0)
+{
     parseArguments(av);
 }
 
 // 引数をパースしてコンテナに格納
 // なぜこの実装か：複数の引数を一つの文字列として扱い、整数として解析する
-void PmergeMe::parseArguments(char **av) {
+void PmergeMe::parseArguments(char **av)
+{
     std::string args_string;
     
     // すべての引数を一つの文字列に連結
@@ -222,14 +231,15 @@ void PmergeMe::insertionPhase(std::vector<int>& main_chain,
     std::vector<int>::iterator insert_pos;
     
     // ペンドチェーンが1要素の場合の単純な処理
-    if (pend_chain.size() == 1) {
+    if (pend_chain.size() == 1)
+    {
         // 二分探索で挿入位置を見つける
-        insert_pos = std::upper_bound(main_chain.begin(), main_chain.end(), 
-                                     pend_chain[0]);
+        insert_pos = std::upper_bound(main_chain.begin(), main_chain.end(), pend_chain[0]);
         main_chain.insert(insert_pos, pend_chain[0]);
     } 
     // ペンドチェーンが複数要素の場合：Jacobsthal数列を使用
-    else if (pend_chain.size() > 1) {
+    else if (pend_chain.size() > 1)
+    {
         /*
         ** Jacobsthal数列による最適化された挿入
         ** なぜこの順序か：挿入時の比較回数を最小化するため、
@@ -288,7 +298,8 @@ void PmergeMe::insertionPhase(std::vector<int>& main_chain,
     */
    // これ、もともと元の配列をコピーしたものを作っておけば良いんじゃないの？
     std::vector<int> result;
-    for (std::vector<int>::iterator it = main_chain.begin(); it != main_chain.end(); ++it) {
+    for (std::vector<int>::iterator it = main_chain.begin(); it != main_chain.end(); ++it)
+    {
         // 元の配列から該当する値を探し、そのグループ全体をコピー
         std::vector<int>::iterator found = std::find(vec.begin(), vec.end(), *it);
         if (found != vec.end()) {
@@ -307,9 +318,10 @@ void PmergeMe::insertionPhase(std::vector<int>& main_chain,
 }
 
 // コンテナの内容を表示
-void PmergeMe::printContainerVector() const {
-    for (std::vector<int>::const_iterator it = _containerVector.begin(); 
-         it != _containerVector.end(); ++it) {
+void PmergeMe::printContainerVector() const
+{
+    for (std::vector<int>::const_iterator it = _containerVector.begin(); it != _containerVector.end(); ++it)
+    {
         std::cout << *it << " ";
     }
 }
