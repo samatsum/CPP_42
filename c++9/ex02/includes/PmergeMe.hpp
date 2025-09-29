@@ -41,7 +41,7 @@ private:
     int jacobsthal(int n) const;
     
     // 挿入フェーズの処理
-    void insertionPhase(std::vector<int>& main_chain, 
+    void insertionPhaseVector(std::vector<int>& main_chain, 
                        std::vector<int>& pend_chain,
                        int odd_element,
                        std::vector<int>& leftover,
