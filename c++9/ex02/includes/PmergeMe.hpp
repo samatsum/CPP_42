@@ -16,15 +16,6 @@ struct IntPair
     int second;
 };
 
-// IntPairを比較するための比較関数オブジェクト
-struct ComparePairFirst
-{
-    bool operator()(const IntPair& a, const IntPair& b) const
-    {
-        return a.first < b.first;
-    }
-};
-
 
 class PmergeMe {
 private:
@@ -35,14 +26,14 @@ private:
     // --- 正確なアルゴリズムのためのプライベートヘルパー関数 ---
 
     // Jacobsthal数を生成する（挿入順序の決定に使用）
-    static std::vector<int> _generateJacobsthalSequence(int n);
+    static std::vector<int> generateJacobsthalSequence(int n);
 
     // 二分探索で挿入位置を見つける
     // std::lower_boundを使用するため、このヘルパーは不要になりますが、
     // 分かりやすさのために残すことも可能です。今回はstd::lower_boundを直接使います。
 
     // Ford-Johnsonソートの本体（再帰関数）
-    void _fordJohnsonSort(std::vector<int>& vec);
+    void fordJohnsonSort(std::vector<int>& vec);
 
 
 public:
@@ -59,8 +50,8 @@ public:
 
 private:
     // --- 既存のヘルパー関数 ---
-    void _parseArguments(char **av);
-    bool _validateInput(const std::string& str);
+    void parseArguments(char **av);
+    bool validateInput(const std::string& str);
 };
 
 #endif // PMERGEME_HPP
