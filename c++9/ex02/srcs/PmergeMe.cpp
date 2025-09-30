@@ -83,7 +83,7 @@ bool PmergeMe::validateInput(const std::string& str)
 }
 
 /* ************************************************************************** */
-// Custom Binary Search with Comparison Counting
+// Binary Search
 /* ************************************************************************** */
 size_t PmergeMe::binarySearchInsertionPoint(const std::vector<int>& vec, int value, size_t end_pos)
 {
@@ -94,36 +94,47 @@ size_t PmergeMe::binarySearchInsertionPoint(const std::vector<int>& vec, int val
     {
         size_t mid = left + (right - left) / 2;
         
-        // ★★★ 比較をカウント ★★★
+        //要素の比較した回数をカウント
         _comparison_count++;
-        
         if (vec[mid] < value)
             left = mid + 1;
         else
             right = mid;
     }
     
-    return left;
+    return (left);
 }
 
 /* ************************************************************************** */
 // Jacobsthal数生成
 /* ************************************************************************** */
+//ヤーコプスタール数とは、下記定義によって表す数である。
+// J(0) = 0
+// J(1) = 1
+// J(n) = J(n-1) + 2×J(n-2)  (n ≥ 2)
+// Jacobsthal数 : 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, ...
+//  [Art Of Computer Programming, Vol.3]には、J(n) = (2^(n+1) + (-1)^n) / 3　とある。
+// →　これは、Jacobsthal数の項数２以降（1, 3, 5, 11...）の別の書き方に過ぎない。（https://en.wikipedia.org/wiki/Jacobsthal_number）
+//　浮動小数点の計算とかいう危ない橋渡るより、こっちの方が確実だよね。（C++98だからstd::round()使えないし。）
 std::vector<int> PmergeMe::generateJacobsthalSequence_Vector(int n)
 {
     std::vector<int> jacob;
-    jacob.push_back(0);
-    if (n > 0)
-        jacob.push_back(1);
+    if (n <= 1)
+        return (jacob);
     
-    while (true)
+    int j_prev2 = 0;// J(k-2)
+    int j_prev1 = 1; // J(k-1)
+    int j_current = 1;// J(2) = J(1) + 2*J(0) = 1
+    
+    while (j_current < n)
     {
-        size_t size = jacob.size();
-        int next = jacob[size - 1] + 2 * jacob[size - 2];
-        if (next >= n)
-            break;
-        jacob.push_back(next);
+        jacob.push_back(j_current);
+        int j_next = j_current + (2 * j_prev1);
+        j_prev2 = j_prev1;
+        j_prev1 = j_current;
+        j_current = j_next;
     }
+    
     return (jacob);
 }
 
@@ -214,24 +225,34 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
 
     // Jacobsthal数列に基づく挿入順序を生成
     std::vector<int> jacob_seq = generateJacobsthalSequence_Vector(pending_elements.size());
+    // for (std::vector<int>::const_iterator it = jacob_seq.begin(); it !=  jacob_seq.end(); ++it)
+    //     std::cout << *it << " ";
+    // std::cout << std::endl;
+
     std::vector<size_t> insertion_order;
-    
+
     for (size_t k = 1; k < jacob_seq.size(); ++k)
     {
-        int start = ((k == 1) ? 1 : jacob_seq[k - 1]);
+        int start = jacob_seq[k - 1];
         int end = jacob_seq[k];
+        
+        // ★★★ endを制限する ★★★
         if (end > static_cast<int>(pending_elements.size()))
             end = pending_elements.size();
         
         for (int i = end; i > start; --i)
             insertion_order.push_back(i - 1);
     }
-    
-    int last_jacob = jacob_seq.back();
-    if (last_jacob < static_cast<int>(pending_elements.size()))
+
+    // ★★★ jacob_seqが空でないかチェック ★★★
+    if (!jacob_seq.empty())
     {
-        for (size_t i = last_jacob; i < pending_elements.size(); ++i)
-            insertion_order.push_back(i);
+        int last_jacob = jacob_seq.back();
+        if (last_jacob < static_cast<int>(pending_elements.size()))
+        {
+            for (size_t i = last_jacob; i < pending_elements.size(); ++i)
+                insertion_order.push_back(i);
+        }
     }
 
     // 各pending要素を挿入
