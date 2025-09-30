@@ -216,7 +216,7 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
 
     // === ステップ4: 最適な順番での挿入 ===
     if (!pending_elements.empty())
-        main_chain.insert(main_chain.begin(), pending_elements[0]);
+        main_chain.insert(main_chain.begin(), pending_elements[0]);// 比較回数をカウントしないでOK。
 
     // a要素の位置を追跡
     std::vector<size_t> a_positions;
@@ -236,7 +236,7 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
         int start = jacob_seq[k - 1];
         int end = jacob_seq[k];
         
-        // ★★★ endを制限する ★★★
+        //endを制限する
         if (end > static_cast<int>(pending_elements.size()))
             end = pending_elements.size();
         
@@ -244,7 +244,7 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
             insertion_order.push_back(i - 1);
     }
 
-    // ★★★ jacob_seqが空でないかチェック ★★★
+    //jacob_seqが空でないかチェック
     if (!jacob_seq.empty())
     {
         int last_jacob = jacob_seq.back();
@@ -265,8 +265,7 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
         
         int value_to_insert = pending_elements[b_index];
         size_t upper_bound_pos = a_positions[b_index - 1];
-        
-        // ★★★ カスタム二分探索（比較回数をカウント） ★★★
+        // 2分探索
         size_t insert_index = binarySearchInsertionPoint(main_chain, value_to_insert, upper_bound_pos + 1);
         
         main_chain.insert(main_chain.begin() + insert_index, value_to_insert);
@@ -278,7 +277,7 @@ void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
                 a_positions[i]++;
         }
     }
-
+    //　pendとoddを挿入しきったmainを元の配列に代入。
     vec = main_chain;
 }
 
