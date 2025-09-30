@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <iomanip>
 #include <cctype>
+#include <climits>
 
 /* ************************************************************************** */
 // Orthodox Canonical Form  Argument Parsing
@@ -41,7 +42,7 @@ PmergeMe::~PmergeMe()
 /* ************************************************************************** */
 // Argument Parsing
 /* ************************************************************************** */
-void PmergeMe::parseArguments(char **av)
+void PmergeMe::parseArguments(char **av)// INTMAXのチェック足りないな。
 {
     std::string args_string;
     for (int i = 1; av[i]; i++)
@@ -54,17 +55,17 @@ void PmergeMe::parseArguments(char **av)
     if (!validateInput(args_string))
         throw std::invalid_argument("Error");
 
-    std::istringstream ss(args_string);
-    int value;
-    while (ss >> value)
+    //std::istringstreamは文字列を入力ストリーム(string stream)として扱うクラス
+    std::istringstream string_stream(args_string);
+    size_t value;
+    // string_stream >> valueはストリームから空白（スペース、タブ、改行）を自動的にスキップして次の整数(int)を読み取る演算子
+    while (string_stream >> value)
     {
-        if (value < 0)
+        if (value < 0 || value > INT_MAX)
             throw std::invalid_argument("Error");
-        _container.push_back(value);
+        _container.push_back(static_cast<int>(value));
     }
-    if (_container.empty())
-        throw std::invalid_argument("Error");
-
+    // かぶってる数値探し
     std::vector<int> sorted_clone = _container;
     std::sort(sorted_clone.begin(), sorted_clone.end());
     for (size_t i = 0; i < sorted_clone.size() - 1; ++i)
@@ -77,29 +78,8 @@ void PmergeMe::parseArguments(char **av)
 bool PmergeMe::validateInput(const std::string& str)
 {
     if (str.empty() || str.find_first_not_of("0123456789 ") != std::string::npos)
-        return false;
+        return (false);
     return (true);
-}
-
-/* ************************************************************************** */
-// Jacobsthal数生成
-/* ************************************************************************** */
-std::vector<int> PmergeMe::generateJacobsthalSequence(int n)
-{
-    std::vector<int> jacob;
-    jacob.push_back(0);
-    if (n > 0)
-        jacob.push_back(1);
-    
-    while (true)
-    {
-        size_t size = jacob.size();
-        int next = jacob[size - 1] + 2 * jacob[size - 2];
-        if (next >= n)
-            break;
-        jacob.push_back(next);
-    }
-    return (jacob);
 }
 
 /* ************************************************************************** */
@@ -127,19 +107,40 @@ size_t PmergeMe::binarySearchInsertionPoint(const std::vector<int>& vec, int val
 }
 
 /* ************************************************************************** */
+// Jacobsthal数生成
+/* ************************************************************************** */
+std::vector<int> PmergeMe::generateJacobsthalSequence_Vector(int n)
+{
+    std::vector<int> jacob;
+    jacob.push_back(0);
+    if (n > 0)
+        jacob.push_back(1);
+    
+    while (true)
+    {
+        size_t size = jacob.size();
+        int next = jacob[size - 1] + 2 * jacob[size - 2];
+        if (next >= n)
+            break;
+        jacob.push_back(next);
+    }
+    return (jacob);
+}
+
+/* ************************************************************************** */
 // Ford-Johnson Algorithm
 /* ************************************************************************** */
-void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
+void PmergeMe::fordJohnsonSort_Vector(std::vector<int>& vec)
 {
     if (vec.size() < 2)
         return;
 
     // === ステップ1: ペアリングとペア内ソート ===
-    int leftover = -1;
-    bool has_leftover = (vec.size() % 2 != 0);
-    if (has_leftover)
+    int odd_element = -1;
+    bool has_odd_element = (vec.size() % 2 != 0);
+    if (has_odd_element)
     {
-        leftover = vec.back();
+        odd_element = vec.back();
         vec.pop_back();
     }
 
@@ -148,9 +149,8 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
     {
         IntPair p;
         
-        // ★★★ 比較をカウント ★★★
+        //要素の比較した回数をカウント
         _comparison_count++;
-        
         if (vec[i] > vec[i+1])
         {
             p.first = vec[i];
@@ -170,7 +170,7 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
         larger_elements.push_back(pairs[i].first);
 
     // 再帰的にFord-Johnsonソートを呼び出す
-    fordJohnsonSort(larger_elements);
+    fordJohnsonSort_Vector(larger_elements);
 
     // ソート結果を元のペアに反映
     std::vector<IntPair> sorted_pairs;
@@ -200,8 +200,8 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
         pending_elements.push_back(pairs[i].second);
     }
     
-    if (has_leftover)
-        pending_elements.push_back(leftover);
+    if (has_odd_element)
+        pending_elements.push_back(odd_element);
 
     // === ステップ4: 最適な順番での挿入 ===
     if (!pending_elements.empty())
@@ -213,12 +213,12 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
         a_positions.push_back(i + 1);
 
     // Jacobsthal数列に基づく挿入順序を生成
-    std::vector<int> jacob_seq = generateJacobsthalSequence(pending_elements.size());
+    std::vector<int> jacob_seq = generateJacobsthalSequence_Vector(pending_elements.size());
     std::vector<size_t> insertion_order;
     
     for (size_t k = 1; k < jacob_seq.size(); ++k)
     {
-        int start = (k == 1) ? 1 : jacob_seq[k - 1];
+        int start = ((k == 1) ? 1 : jacob_seq[k - 1]);
         int end = jacob_seq[k];
         if (end > static_cast<int>(pending_elements.size()))
             end = pending_elements.size();
@@ -266,15 +266,15 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
 // Public Interface
 /* ************************************************************************** */
 
-void PmergeMe::sortVector()
+void PmergeMe::sort_Vector()
 {
     _comparison_count = 0;
     _start_time = std::clock();
-    fordJohnsonSort(_container);
+    fordJohnsonSort_Vector(_container);
     _end_time = std::clock();
 }
 
-void PmergeMe::printContainerVector() const
+void PmergeMe::printContainer_Vector() const
 {
     for (std::vector<int>::const_iterator it = _container.begin(); it != _container.end(); ++it)
         std::cout << *it << " ";

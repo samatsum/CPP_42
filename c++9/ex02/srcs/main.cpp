@@ -15,15 +15,7 @@
 // 中間位置での挿入がvectorより効率的な場合がある
 /* ************************************************************************** */
 #include "../includes/PmergeMe.hpp"
-/*
-** main.cpp - Ford-Johnson Algorithmのメイン関数
-** std::vector専用版
-**
-** このプログラムの目的：
-** 1. コマンドライン引数から整数列を受け取る
-** 2. std::vectorでFord-Johnson algorithmを実行
-** 3. ソート結果と処理時間を表示
-*/
+
 
 #include <iostream>
 #include <exception>
@@ -44,32 +36,26 @@ int main(int argc, char **argv)
         
         // ソート前の配列を表示
         std::cout << "Before: ";
-        sorter.printContainerVector();
+        sorter.printContainer_Vector();
         std::cout << std::endl;
         
-        // Ford-Johnson algorithmでソート実行
-        // sortVector()メソッド内で開始・終了時刻を記録
-        sorter.sortVector();
+        sorter.sort_Vector();
         
         // ソート後の配列を表示
         std::cout << "After: ";
-        sorter.printContainerVector();
+        sorter.printContainer_Vector();
         std::cout << std::endl;
         
         sorter.printTime();
-        //S(21) = 理論的下限 = 66回(どんなアルゴリズムでも、「21個の数字をソートする際に、最低でも66回は比較が必要」ということ。)
-        sorter.printComparisonCount();
-        
+        //S(21) = 理論的下限 = 66回(比較ソートの場合どんな比較ソートでも、「21個の数字をソートする際に、最低でも66回は比較が必要」ということ。)
+        //21個の要素には 21! 通りの並び順が存在
+        // 各比較は「yes/no」の2通りの結果を持つ
+        // すべての並び順を区別するには少なくとも log₂(21!) 回の質問（比較）が必要
+        // ⌈log₂ 21!⌉ = ⌈65.91...⌉ = 66回
+        sorter.printComparisonCount(); 
     }
     catch (const std::exception& e)
     {
-        /*
-        ** エラー処理
-        ** なぜこの例外処理か：
-        ** - 不正な入力（負の数、文字列、重複など）を検出
-        ** - メモリ不足などの予期しないエラーに対応
-        ** - 課題要件では"Error"のみを表示
-        */
         std::cerr << "Error" << std::endl;
         return (1);
     }
