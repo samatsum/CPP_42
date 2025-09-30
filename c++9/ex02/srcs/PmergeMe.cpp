@@ -10,10 +10,10 @@
 /* ************************************************************************** */
 // Orthodox Canonical Form  Argument Parsing
 /* ************************************************************************** */
-PmergeMe::PmergeMe() : _start_time(0), _end_time(0)
+PmergeMe::PmergeMe() : _start_time(0), _end_time(0), _comparison_count(0)
 {}
 
-PmergeMe::PmergeMe(char **av) : _start_time(0), _end_time(0)
+PmergeMe::PmergeMe(char **av) : _start_time(0), _end_time(0), _comparison_count(0)
 {
     parseArguments(av);
 }
@@ -30,6 +30,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
         _container = rhs._container;
         _start_time = rhs._start_time;
         _end_time = rhs._end_time;
+        _comparison_count = rhs._comparison_count;
     }
     return (*this);
 }
@@ -102,12 +103,34 @@ std::vector<int> PmergeMe::generateJacobsthalSequence(int n)
 }
 
 /* ************************************************************************** */
+// Custom Binary Search with Comparison Counting
+/* ************************************************************************** */
+size_t PmergeMe::binarySearchInsertionPoint(const std::vector<int>& vec, int value, size_t end_pos)
+{
+    size_t left = 0;
+    size_t right = end_pos;
+    
+    while (left < right)
+    {
+        size_t mid = left + (right - left) / 2;
+        
+        // ★★★ 比較をカウント ★★★
+        _comparison_count++;
+        
+        if (vec[mid] < value)
+            left = mid + 1;
+        else
+            right = mid;
+    }
+    
+    return left;
+}
+
+/* ************************************************************************** */
 // Ford-Johnson Algorithm
 /* ************************************************************************** */
-
 void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
 {
-    // ベースケース
     if (vec.size() < 2)
         return;
 
@@ -124,6 +147,10 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
     for (size_t i = 0; i < vec.size(); i += 2)
     {
         IntPair p;
+        
+        // ★★★ 比較をカウント ★★★
+        _comparison_count++;
+        
         if (vec[i] > vec[i+1])
         {
             p.first = vec[i];
@@ -138,26 +165,22 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
     }
 
     // === ステップ2: 大きい方の要素を再帰的にソート ===
-    // まず、大きい方の要素（a要素）を抽出
     std::vector<int> larger_elements;
     for (size_t i = 0; i < pairs.size(); ++i)
         larger_elements.push_back(pairs[i].first);
 
-    // **重要**: 再帰的にFord-Johnsonソートを呼び出す
+    // 再帰的にFord-Johnsonソートを呼び出す
     fordJohnsonSort(larger_elements);
 
     // ソート結果を元のペアに反映
-    // larger_elementsの順序に従ってpairsを並べ替える
     std::vector<IntPair> sorted_pairs;
     for (size_t i = 0; i < larger_elements.size(); ++i)
     {
-        // larger_elements[i]に対応する元のペアを見つける
         for (size_t j = 0; j < pairs.size(); ++j)
         {
             if (pairs[j].first == larger_elements[i])
             {
                 sorted_pairs.push_back(pairs[j]);
-                // 同じ要素を二度使わないようにマークする（-1で無効化）
                 pairs[j].first = -1;
                 break;
             }
@@ -181,14 +204,13 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
         pending_elements.push_back(leftover);
 
     // === ステップ4: 最適な順番での挿入 ===
-    // 最初の保留要素(b1)をメインチェーンの先頭に挿入
     if (!pending_elements.empty())
         main_chain.insert(main_chain.begin(), pending_elements[0]);
 
-    // a要素の位置を追跡する配列
+    // a要素の位置を追跡
     std::vector<size_t> a_positions;
     for (size_t i = 0; i < pairs.size(); ++i)
-        a_positions.push_back(i + 1); // b1が先頭に入ったので+1
+        a_positions.push_back(i + 1);
 
     // Jacobsthal数列に基づく挿入順序を生成
     std::vector<int> jacob_seq = generateJacobsthalSequence(pending_elements.size());
@@ -200,12 +222,11 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
         int end = jacob_seq[k];
         if (end > static_cast<int>(pending_elements.size()))
             end = pending_elements.size();
-        // 降順で追加
+        
         for (int i = end; i > start; --i)
-            insertion_order.push_back(i - 1); // 0-indexed
+            insertion_order.push_back(i - 1);
     }
     
-    // 残りの要素を追加
     int last_jacob = jacob_seq.back();
     if (last_jacob < static_cast<int>(pending_elements.size()))
     {
@@ -218,20 +239,16 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
     {
         size_t b_index = insertion_order[idx];
         
-        // b_indexが0の場合はすでに挿入済み
         if (b_index == 0)
             continue;
         
         int value_to_insert = pending_elements[b_index];
-        
-        // 探索範囲の上限を特定（対応するa要素の位置まで）
         size_t upper_bound_pos = a_positions[b_index - 1];
         
-        // 二分探索で挿入位置を見つける
-        std::vector<int>::iterator search_end = main_chain.begin() + upper_bound_pos + 1;
-        std::vector<int>::iterator insert_pos = std::lower_bound(main_chain.begin(), search_end, value_to_insert);
-        size_t insert_index = std::distance(main_chain.begin(), insert_pos);
-        main_chain.insert(insert_pos, value_to_insert);
+        // ★★★ カスタム二分探索（比較回数をカウント） ★★★
+        size_t insert_index = binarySearchInsertionPoint(main_chain, value_to_insert, upper_bound_pos + 1);
+        
+        main_chain.insert(main_chain.begin() + insert_index, value_to_insert);
         
         // a要素の位置を更新
         for (size_t i = 0; i < a_positions.size(); ++i)
@@ -244,12 +261,14 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec)
     vec = main_chain;
 }
 
+
 /* ************************************************************************** */
 // Public Interface
 /* ************************************************************************** */
 
 void PmergeMe::sortVector()
 {
+    _comparison_count = 0;
     _start_time = std::clock();
     fordJohnsonSort(_container);
     _end_time = std::clock();
@@ -268,4 +287,9 @@ void PmergeMe::printTime() const
               << " elements with std::vector : "
               << std::fixed << std::setprecision(5) << elapsed
               << " us" << std::endl;
+}
+
+void PmergeMe::printComparisonCount() const
+{
+    std::cout << "Number of comparisons: " << _comparison_count << std::endl;
 }

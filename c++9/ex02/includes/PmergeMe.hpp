@@ -6,10 +6,9 @@
 #include <string>
 #include <ctime>
 #include <stdexcept>
-#include <algorithm> // for std::swap, std::lower_bound
-#include <iterator>  // for std::distance
+#include <algorithm>
+#include <iterator>
 
-// ペアを扱うための構造体。 firstが大きい方, secondが小さい方
 struct IntPair
 {
     int first;
@@ -22,22 +21,15 @@ private:
     std::vector<int> _container;
     clock_t _start_time;
     clock_t _end_time;
-
-    // --- 正確なアルゴリズムのためのプライベートヘルパー関数 ---
+    size_t _comparison_count;
 
     // Jacobsthal数を生成する（挿入順序の決定に使用）
     static std::vector<int> generateJacobsthalSequence(int n);
-
-    // 二分探索で挿入位置を見つける
-    // std::lower_boundを使用するため、このヘルパーは不要になりますが、
-    // 分かりやすさのために残すことも可能です。今回はstd::lower_boundを直接使います。
-
-    // Ford-Johnsonソートの本体（再帰関数）
     void fordJohnsonSort(std::vector<int>& vec);
+    size_t binarySearchInsertionPoint(const std::vector<int>& vec, int value, size_t end_pos);
 
 
 public:
-    // --- 既存のインターフェース ---
     PmergeMe();
     PmergeMe(char **av);
     ~PmergeMe();
@@ -47,11 +39,11 @@ public:
     void sortVector();
     void printTime() const;
     void printContainerVector() const;
+    void printComparisonCount() const;
 
 private:
-    // --- 既存のヘルパー関数 ---
     void parseArguments(char **av);
     bool validateInput(const std::string& str);
 };
 
-#endif // PMERGEME_HPP
+#endif

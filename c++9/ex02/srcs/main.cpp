@@ -28,30 +28,26 @@
 #include <iostream>
 #include <exception>
 
-int main(int argc, char **argv) {
-    // 引数チェック
-    // なぜこのチェックか：最低でも2つの引数（プログラム名 + 1つ以上の数値）が必要
+int main(int argc, char **argv)
+{
     if (argc < 2)
     {
         std::cerr << "Error" << std::endl;
         return (1);
     }
-    
+
     try
     {
         // PmergeMeオブジェクトの作成と初期化
-        // なぜこの実装か：コンストラクタで引数をパースし、
-        // 不正な入力があれば例外を投げる設計
+        // 不正な入力があれば例外を投げる
         PmergeMe sorter(argv);
         
         // ソート前の配列を表示
-        // なぜこの表示か：課題要件でBeforeとAfterの表示が必要
         std::cout << "Before: ";
         sorter.printContainerVector();
         std::cout << std::endl;
         
         // Ford-Johnson algorithmでソート実行
-        // なぜここでソートか：時間計測も同時に行うため、
         // sortVector()メソッド内で開始・終了時刻を記録
         sorter.sortVector();
         
@@ -60,10 +56,9 @@ int main(int argc, char **argv) {
         sorter.printContainerVector();
         std::cout << std::endl;
         
-        // 処理時間の表示
-        // なぜこの形式か：課題で指定された出力形式
-        // "Time to process a range of N elements with std::vector : X.XXXXXX s"
         sorter.printTime();
+        //S(21) = 理論的下限 = 66回(どんなアルゴリズムでも、「21個の数字をソートする際に、最低でも66回は比較が必要」ということ。)
+        sorter.printComparisonCount();
         
     }
     catch (const std::exception& e)
